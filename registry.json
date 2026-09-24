@@ -1,0 +1,1957 @@
+{
+    "$schema": "https://ui.shadcn.com/schema/registry.json",
+    "name": "president-ui",
+    "homepage": "https://github.com/WandryDev/president-ui",
+    "items": [
+        {
+            "name": "accordion",
+            "type": "registry:ui",
+            "title": "Accordion",
+            "description": "The accordion primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "lucide-react@^0.475.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/accordion.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/accordion.tsx"
+                }
+            ]
+        },
+        {
+            "name": "alert",
+            "type": "registry:ui",
+            "title": "Alert",
+            "description": "The alert primitive.",
+            "dependencies": [
+                "class-variance-authority@^0.7.1"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/alert.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/alert.tsx"
+                }
+            ]
+        },
+        {
+            "name": "alert-dialog",
+            "type": "registry:ui",
+            "title": "Alert Dialog",
+            "description": "The alert dialog primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/alert-dialog.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/alert-dialog.tsx"
+                }
+            ]
+        },
+        {
+            "name": "alert-error",
+            "type": "registry:component",
+            "title": "Alert Error",
+            "description": "A destructive alert listing unique error messages.",
+            "dependencies": [
+                "lucide-react@^0.475.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/alert"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/common/alert-error.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/common/alert-error.tsx"
+                }
+            ]
+        },
+        {
+            "name": "aspect-ratio",
+            "type": "registry:ui",
+            "title": "Aspect Ratio",
+            "description": "The aspect ratio primitive.",
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/aspect-ratio.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/aspect-ratio.tsx"
+                }
+            ]
+        },
+        {
+            "name": "attachment",
+            "type": "registry:ui",
+            "title": "Attachment",
+            "description": "The attachment primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "class-variance-authority@^0.7.1"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/button",
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/attachment.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/attachment.tsx"
+                }
+            ]
+        },
+        {
+            "name": "autocomplete",
+            "type": "registry:ui",
+            "title": "Autocomplete",
+            "description": "The autocomplete primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "lucide-react@^0.475.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/input",
+                "WandryDev/president-ui/scroll-area",
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/autocomplete.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/autocomplete.tsx"
+                }
+            ]
+        },
+        {
+            "name": "avatar",
+            "type": "registry:ui",
+            "title": "Avatar",
+            "description": "The avatar primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/avatar.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/avatar.tsx"
+                }
+            ]
+        },
+        {
+            "name": "badge",
+            "type": "registry:ui",
+            "title": "Badge",
+            "description": "The badge primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "class-variance-authority@^0.7.1"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/badge.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/badge.tsx"
+                }
+            ]
+        },
+        {
+            "name": "breadcrumb",
+            "type": "registry:ui",
+            "title": "Breadcrumb",
+            "description": "The breadcrumb primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "lucide-react@^0.475.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/breadcrumb.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/breadcrumb.tsx"
+                }
+            ]
+        },
+        {
+            "name": "bubble",
+            "type": "registry:ui",
+            "title": "Bubble",
+            "description": "The bubble primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "class-variance-authority@^0.7.1"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/bubble.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/bubble.tsx"
+                }
+            ]
+        },
+        {
+            "name": "button",
+            "type": "registry:ui",
+            "title": "Button",
+            "description": "The button primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "class-variance-authority@^0.7.1"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/spinner",
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/button.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/button.tsx"
+                }
+            ]
+        },
+        {
+            "name": "button-group",
+            "type": "registry:ui",
+            "title": "Button Group",
+            "description": "The button group primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "class-variance-authority@^0.7.1"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/separator",
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/button-group.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/button-group.tsx"
+                }
+            ]
+        },
+        {
+            "name": "calendar",
+            "type": "registry:ui",
+            "title": "Calendar",
+            "description": "The calendar primitive.",
+            "dependencies": [
+                "@daypicker/react@^10.0.1",
+                "lucide-react@^0.475.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/calendar.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/calendar.tsx"
+                }
+            ]
+        },
+        {
+            "name": "card",
+            "type": "registry:ui",
+            "title": "Card",
+            "description": "The card primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/card.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/card.tsx"
+                }
+            ]
+        },
+        {
+            "name": "carousel",
+            "type": "registry:ui",
+            "title": "Carousel",
+            "description": "The carousel primitive.",
+            "dependencies": [
+                "embla-carousel-react@^8.6.0",
+                "lucide-react@^0.475.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/button",
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/carousel.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/carousel.tsx"
+                }
+            ]
+        },
+        {
+            "name": "chart",
+            "type": "registry:ui",
+            "title": "Chart",
+            "description": "The chart primitive.",
+            "dependencies": [
+                "recharts@3.8.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/chart.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/chart.tsx"
+                }
+            ]
+        },
+        {
+            "name": "checkbox",
+            "type": "registry:ui",
+            "title": "Checkbox",
+            "description": "The checkbox primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/checkbox.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/checkbox.tsx"
+                }
+            ]
+        },
+        {
+            "name": "checkbox-group",
+            "type": "registry:ui",
+            "title": "Checkbox Group",
+            "description": "The checkbox group primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/checkbox-group.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/checkbox-group.tsx"
+                }
+            ]
+        },
+        {
+            "name": "collapsible",
+            "type": "registry:ui",
+            "title": "Collapsible",
+            "description": "The collapsible primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/collapsible.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/collapsible.tsx"
+                }
+            ]
+        },
+        {
+            "name": "combobox",
+            "type": "registry:ui",
+            "title": "Combobox",
+            "description": "The combobox primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "lucide-react@^0.475.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/input",
+                "WandryDev/president-ui/scroll-area",
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/combobox.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/combobox.tsx"
+                }
+            ]
+        },
+        {
+            "name": "command",
+            "type": "registry:ui",
+            "title": "Command",
+            "description": "The command primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "lucide-react@^0.475.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/autocomplete",
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/command.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/command.tsx"
+                }
+            ]
+        },
+        {
+            "name": "context-menu",
+            "type": "registry:ui",
+            "title": "Context Menu",
+            "description": "The context menu primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "lucide-react@^0.475.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/context-menu.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/context-menu.tsx"
+                }
+            ]
+        },
+        {
+            "name": "data-table",
+            "type": "registry:component",
+            "title": "Data Table",
+            "description": "TanStack table with toolbar, search, filters, pagination and editable cells.",
+            "dependencies": [
+                "@tanstack/react-table@^8.21.3",
+                "lucide-react@^0.475.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/badge",
+                "WandryDev/president-ui/button",
+                "WandryDev/president-ui/checkbox",
+                "WandryDev/president-ui/dropdown-menu",
+                "WandryDev/president-ui/empty",
+                "WandryDev/president-ui/input",
+                "WandryDev/president-ui/input-group",
+                "WandryDev/president-ui/native-select",
+                "WandryDev/president-ui/separator",
+                "WandryDev/president-ui/skeleton",
+                "WandryDev/president-ui/table",
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/data-table/data-table-column-header.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/data-table/data-table-column-header.tsx"
+                },
+                {
+                    "path": "resources/js/components/data-table/data-table-faceted-filter.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/data-table/data-table-faceted-filter.tsx"
+                },
+                {
+                    "path": "resources/js/components/data-table/data-table-filters.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/data-table/data-table-filters.tsx"
+                },
+                {
+                    "path": "resources/js/components/data-table/data-table-pagination.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/data-table/data-table-pagination.tsx"
+                },
+                {
+                    "path": "resources/js/components/data-table/data-table-search.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/data-table/data-table-search.tsx"
+                },
+                {
+                    "path": "resources/js/components/data-table/data-table-toolbar.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/data-table/data-table-toolbar.tsx"
+                },
+                {
+                    "path": "resources/js/components/data-table/data-table-view-options.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/data-table/data-table-view-options.tsx"
+                },
+                {
+                    "path": "resources/js/components/data-table/data-table.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/data-table/data-table.tsx"
+                },
+                {
+                    "path": "resources/js/components/data-table/editable-cell.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/data-table/editable-cell.tsx"
+                },
+                {
+                    "path": "resources/js/components/data-table/editable-cells.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/data-table/editable-cells.tsx"
+                },
+                {
+                    "path": "resources/js/components/data-table/filter-fns.ts",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/data-table/filter-fns.ts"
+                },
+                {
+                    "path": "resources/js/components/data-table/index.ts",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/data-table/index.ts"
+                },
+                {
+                    "path": "resources/js/components/data-table/selection-column.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/data-table/selection-column.tsx"
+                },
+                {
+                    "path": "resources/js/components/data-table/types.ts",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/data-table/types.ts"
+                },
+                {
+                    "path": "resources/js/components/data-table/use-data-table.ts",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/data-table/use-data-table.ts"
+                }
+            ]
+        },
+        {
+            "name": "dialog",
+            "type": "registry:ui",
+            "title": "Dialog",
+            "description": "The dialog primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "lucide-react@^0.475.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/button",
+                "WandryDev/president-ui/scroll-area",
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/dialog.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/dialog.tsx"
+                }
+            ]
+        },
+        {
+            "name": "direction",
+            "type": "registry:ui",
+            "title": "Direction",
+            "description": "The direction primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/direction.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/direction.tsx"
+                }
+            ]
+        },
+        {
+            "name": "drawer",
+            "type": "registry:ui",
+            "title": "Drawer",
+            "description": "The drawer primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "lucide-react@^0.475.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/button",
+                "WandryDev/president-ui/scroll-area",
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/drawer.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/drawer.tsx"
+                }
+            ]
+        },
+        {
+            "name": "dropdown-menu",
+            "type": "registry:ui",
+            "title": "Dropdown Menu",
+            "description": "The dropdown menu primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "lucide-react@^0.475.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/dropdown-menu.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/dropdown-menu.tsx"
+                }
+            ]
+        },
+        {
+            "name": "empty",
+            "type": "registry:ui",
+            "title": "Empty",
+            "description": "The empty primitive.",
+            "dependencies": [
+                "class-variance-authority@^0.7.1"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/empty.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/empty.tsx"
+                }
+            ]
+        },
+        {
+            "name": "field",
+            "type": "registry:ui",
+            "title": "Field",
+            "description": "The field primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/field.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/field.tsx"
+                }
+            ]
+        },
+        {
+            "name": "fieldset",
+            "type": "registry:ui",
+            "title": "Fieldset",
+            "description": "The fieldset primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/fieldset.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/fieldset.tsx"
+                }
+            ]
+        },
+        {
+            "name": "font-mono",
+            "type": "registry:item",
+            "title": "Geist Mono",
+            "description": "Geist Mono as the monospace typeface.",
+            "dependencies": [
+                "@fontsource-variable/geist-mono@^5.2.0"
+            ],
+            "files": [
+                {
+                    "path": "resources/css/font-mono.css",
+                    "type": "registry:file",
+                    "target": "~/resources/css/font-mono.css"
+                }
+            ]
+        },
+        {
+            "name": "font-sans",
+            "type": "registry:item",
+            "title": "Onest",
+            "description": "Onest as the sans and heading typeface.",
+            "dependencies": [
+                "@fontsource-variable/onest@^5.3.1"
+            ],
+            "files": [
+                {
+                    "path": "resources/css/font-sans.css",
+                    "type": "registry:file",
+                    "target": "~/resources/css/font-sans.css"
+                }
+            ]
+        },
+        {
+            "name": "form",
+            "type": "registry:component",
+            "title": "Form",
+            "description": "Inertia-aware form with react-hook-form, zod and typed fields.",
+            "dependencies": [
+                "@hookform/resolvers@^5",
+                "@inertiajs/core@^3.0.0",
+                "@inertiajs/react@^3.0.0",
+                "date-fns@^4.4.0",
+                "lucide-react@^0.475.0",
+                "react-hook-form@^7.83.0",
+                "zod@^4"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/alert-error",
+                "WandryDev/president-ui/attachment",
+                "WandryDev/president-ui/badge",
+                "WandryDev/president-ui/button",
+                "WandryDev/president-ui/calendar",
+                "WandryDev/president-ui/checkbox",
+                "WandryDev/president-ui/field",
+                "WandryDev/president-ui/input",
+                "WandryDev/president-ui/input-group",
+                "WandryDev/president-ui/input-otp",
+                "WandryDev/president-ui/label",
+                "WandryDev/president-ui/popover",
+                "WandryDev/president-ui/radio-group",
+                "WandryDev/president-ui/select",
+                "WandryDev/president-ui/slider",
+                "WandryDev/president-ui/switch",
+                "WandryDev/president-ui/textarea",
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/form/checkbox-field.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/form/checkbox-field.tsx"
+                },
+                {
+                    "path": "resources/js/components/form/date-field.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/form/date-field.tsx"
+                },
+                {
+                    "path": "resources/js/components/form/field-paths.ts",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/form/field-paths.ts"
+                },
+                {
+                    "path": "resources/js/components/form/form-context.ts",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/form/form-context.ts"
+                },
+                {
+                    "path": "resources/js/components/form/form-field.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/form/form-field.tsx"
+                },
+                {
+                    "path": "resources/js/components/form/form.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/form/form.tsx"
+                },
+                {
+                    "path": "resources/js/components/form/index.ts",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/form/index.ts"
+                },
+                {
+                    "path": "resources/js/components/form/media-field.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/form/media-field.tsx"
+                },
+                {
+                    "path": "resources/js/components/form/otp-field.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/form/otp-field.tsx"
+                },
+                {
+                    "path": "resources/js/components/form/password-field.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/form/password-field.tsx"
+                },
+                {
+                    "path": "resources/js/components/form/radio-group-field.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/form/radio-group-field.tsx"
+                },
+                {
+                    "path": "resources/js/components/form/select-field.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/form/select-field.tsx"
+                },
+                {
+                    "path": "resources/js/components/form/slider-field.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/form/slider-field.tsx"
+                },
+                {
+                    "path": "resources/js/components/form/switch-field.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/form/switch-field.tsx"
+                },
+                {
+                    "path": "resources/js/components/form/text-field.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/form/text-field.tsx"
+                },
+                {
+                    "path": "resources/js/components/form/textarea-field.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/form/textarea-field.tsx"
+                },
+                {
+                    "path": "resources/js/components/form/types.ts",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/form/types.ts"
+                },
+                {
+                    "path": "resources/js/components/form/use-inertia-form.ts",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/form/use-inertia-form.ts"
+                }
+            ]
+        },
+        {
+            "name": "frame",
+            "type": "registry:ui",
+            "title": "Frame",
+            "description": "The frame primitive.",
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/frame.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/frame.tsx"
+                }
+            ]
+        },
+        {
+            "name": "group",
+            "type": "registry:ui",
+            "title": "Group",
+            "description": "The group primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "class-variance-authority@^0.7.1"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/separator",
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/group.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/group.tsx"
+                }
+            ]
+        },
+        {
+            "name": "hover-card",
+            "type": "registry:ui",
+            "title": "Hover Card",
+            "description": "The hover card primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/hover-card.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/hover-card.tsx"
+                }
+            ]
+        },
+        {
+            "name": "icon",
+            "type": "registry:ui",
+            "title": "Icon",
+            "description": "The icon primitive.",
+            "dependencies": [
+                "lucide-react@^0.475.0"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/icon.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/icon.tsx"
+                }
+            ]
+        },
+        {
+            "name": "input",
+            "type": "registry:ui",
+            "title": "Input",
+            "description": "The input primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/input.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/input.tsx"
+                }
+            ]
+        },
+        {
+            "name": "input-group",
+            "type": "registry:ui",
+            "title": "Input Group",
+            "description": "The input group primitive.",
+            "dependencies": [
+                "class-variance-authority@^0.7.1"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/button",
+                "WandryDev/president-ui/input",
+                "WandryDev/president-ui/textarea",
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/input-group.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/input-group.tsx"
+                }
+            ]
+        },
+        {
+            "name": "input-otp",
+            "type": "registry:ui",
+            "title": "Input Otp",
+            "description": "The input otp primitive.",
+            "dependencies": [
+                "input-otp@^1.4.2",
+                "lucide-react@^0.475.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/input-otp.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/input-otp.tsx"
+                }
+            ]
+        },
+        {
+            "name": "item",
+            "type": "registry:ui",
+            "title": "Item",
+            "description": "The item primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "class-variance-authority@^0.7.1"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/separator",
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/item.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/item.tsx"
+                }
+            ]
+        },
+        {
+            "name": "kbd",
+            "type": "registry:ui",
+            "title": "Kbd",
+            "description": "The kbd primitive.",
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/kbd.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/kbd.tsx"
+                }
+            ]
+        },
+        {
+            "name": "label",
+            "type": "registry:ui",
+            "title": "Label",
+            "description": "The label primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/label.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/label.tsx"
+                }
+            ]
+        },
+        {
+            "name": "marker",
+            "type": "registry:ui",
+            "title": "Marker",
+            "description": "The marker primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "class-variance-authority@^0.7.1"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/marker.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/marker.tsx"
+                }
+            ]
+        },
+        {
+            "name": "menu",
+            "type": "registry:ui",
+            "title": "Menu",
+            "description": "The menu primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "lucide-react@^0.475.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/menu.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/menu.tsx"
+                }
+            ]
+        },
+        {
+            "name": "menubar",
+            "type": "registry:ui",
+            "title": "Menubar",
+            "description": "The menubar primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "lucide-react@^0.475.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/dropdown-menu",
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/menubar.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/menubar.tsx"
+                }
+            ]
+        },
+        {
+            "name": "message",
+            "type": "registry:ui",
+            "title": "Message",
+            "description": "The message primitive.",
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/message.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/message.tsx"
+                }
+            ]
+        },
+        {
+            "name": "message-scroller",
+            "type": "registry:ui",
+            "title": "Message Scroller",
+            "description": "The message scroller primitive.",
+            "dependencies": [
+                "@shadcn/react@^0.2.1",
+                "lucide-react@^0.475.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/button",
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/message-scroller.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/message-scroller.tsx"
+                }
+            ]
+        },
+        {
+            "name": "meter",
+            "type": "registry:ui",
+            "title": "Meter",
+            "description": "The meter primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/meter.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/meter.tsx"
+                }
+            ]
+        },
+        {
+            "name": "native-select",
+            "type": "registry:ui",
+            "title": "Native Select",
+            "description": "The native select primitive.",
+            "dependencies": [
+                "lucide-react@^0.475.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/native-select.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/native-select.tsx"
+                }
+            ]
+        },
+        {
+            "name": "navigation-menu",
+            "type": "registry:ui",
+            "title": "Navigation Menu",
+            "description": "The navigation menu primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "class-variance-authority@^0.7.1",
+                "lucide-react@^0.475.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/navigation-menu.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/navigation-menu.tsx"
+                }
+            ]
+        },
+        {
+            "name": "number-field",
+            "type": "registry:ui",
+            "title": "Number Field",
+            "description": "The number field primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "lucide-react@^0.475.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/label",
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/number-field.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/number-field.tsx"
+                }
+            ]
+        },
+        {
+            "name": "otp-field",
+            "type": "registry:ui",
+            "title": "Otp Field",
+            "description": "The otp field primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/separator",
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/otp-field.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/otp-field.tsx"
+                }
+            ]
+        },
+        {
+            "name": "pagination",
+            "type": "registry:ui",
+            "title": "Pagination",
+            "description": "The pagination primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "lucide-react@^0.475.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/button",
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/pagination.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/pagination.tsx"
+                }
+            ]
+        },
+        {
+            "name": "placeholder-pattern",
+            "type": "registry:ui",
+            "title": "Placeholder Pattern",
+            "description": "The placeholder pattern primitive.",
+            "files": [
+                {
+                    "path": "resources/js/components/ui/placeholder-pattern.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/placeholder-pattern.tsx"
+                }
+            ]
+        },
+        {
+            "name": "popover",
+            "type": "registry:ui",
+            "title": "Popover",
+            "description": "The popover primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/popover.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/popover.tsx"
+                }
+            ]
+        },
+        {
+            "name": "preview-card",
+            "type": "registry:ui",
+            "title": "Preview Card",
+            "description": "The preview card primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/preview-card.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/preview-card.tsx"
+                }
+            ]
+        },
+        {
+            "name": "progress",
+            "type": "registry:ui",
+            "title": "Progress",
+            "description": "The progress primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/progress.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/progress.tsx"
+                }
+            ]
+        },
+        {
+            "name": "radio-group",
+            "type": "registry:ui",
+            "title": "Radio Group",
+            "description": "The radio group primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/radio-group.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/radio-group.tsx"
+                }
+            ]
+        },
+        {
+            "name": "resizable",
+            "type": "registry:ui",
+            "title": "Resizable",
+            "description": "The resizable primitive.",
+            "dependencies": [
+                "react-resizable-panels@^4.12.2"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/resizable.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/resizable.tsx"
+                }
+            ]
+        },
+        {
+            "name": "scroll-area",
+            "type": "registry:ui",
+            "title": "Scroll Area",
+            "description": "The scroll area primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/scroll-area.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/scroll-area.tsx"
+                }
+            ]
+        },
+        {
+            "name": "segmented-control",
+            "type": "registry:lib",
+            "title": "Segmented Control",
+            "description": "Shared size variants for segmented controls.",
+            "dependencies": [
+                "class-variance-authority@^0.7.1"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/lib/segmented-control.ts",
+                    "type": "registry:lib",
+                    "target": "~/resources/js/lib/segmented-control.ts"
+                }
+            ]
+        },
+        {
+            "name": "select",
+            "type": "registry:ui",
+            "title": "Select",
+            "description": "The select primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "class-variance-authority@^0.7.1",
+                "lucide-react@^0.475.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/select.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/select.tsx"
+                }
+            ]
+        },
+        {
+            "name": "separator",
+            "type": "registry:ui",
+            "title": "Separator",
+            "description": "The separator primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/separator.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/separator.tsx"
+                }
+            ]
+        },
+        {
+            "name": "sheet",
+            "type": "registry:ui",
+            "title": "Sheet",
+            "description": "The sheet primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "lucide-react@^0.475.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/button",
+                "WandryDev/president-ui/scroll-area",
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/sheet.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/sheet.tsx"
+                }
+            ]
+        },
+        {
+            "name": "sidebar",
+            "type": "registry:ui",
+            "title": "Sidebar",
+            "description": "The sidebar primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "class-variance-authority@^0.7.1",
+                "lucide-react@^0.475.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/button",
+                "WandryDev/president-ui/input",
+                "WandryDev/president-ui/scroll-area",
+                "WandryDev/president-ui/separator",
+                "WandryDev/president-ui/sheet",
+                "WandryDev/president-ui/skeleton",
+                "WandryDev/president-ui/tooltip",
+                "WandryDev/president-ui/use-media-query",
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/sidebar.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/sidebar.tsx"
+                }
+            ]
+        },
+        {
+            "name": "skeleton",
+            "type": "registry:ui",
+            "title": "Skeleton",
+            "description": "The skeleton primitive.",
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/skeleton.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/skeleton.tsx"
+                }
+            ]
+        },
+        {
+            "name": "slider",
+            "type": "registry:ui",
+            "title": "Slider",
+            "description": "The slider primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/slider.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/slider.tsx"
+                }
+            ]
+        },
+        {
+            "name": "sonner",
+            "type": "registry:ui",
+            "title": "Sonner",
+            "description": "The sonner primitive.",
+            "dependencies": [
+                "lucide-react@^0.475.0",
+                "next-themes@^0.4.6",
+                "sonner@^2.0.0"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/sonner.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/sonner.tsx"
+                }
+            ]
+        },
+        {
+            "name": "spinner",
+            "type": "registry:ui",
+            "title": "Spinner",
+            "description": "The spinner primitive.",
+            "dependencies": [
+                "lucide-react@^0.475.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/spinner.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/spinner.tsx"
+                }
+            ]
+        },
+        {
+            "name": "switch",
+            "type": "registry:ui",
+            "title": "Switch",
+            "description": "The switch primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/switch.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/switch.tsx"
+                }
+            ]
+        },
+        {
+            "name": "table",
+            "type": "registry:ui",
+            "title": "Table",
+            "description": "The table primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/table.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/table.tsx"
+                }
+            ]
+        },
+        {
+            "name": "tabs",
+            "type": "registry:ui",
+            "title": "Tabs",
+            "description": "The tabs primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/segmented-control",
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/tabs.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/tabs.tsx"
+                }
+            ]
+        },
+        {
+            "name": "test-utils",
+            "type": "registry:item",
+            "title": "Test Utils",
+            "description": "Vitest setup, the Inertia page stub and the form and table harnesses.",
+            "dependencies": [
+                "@inertiajs/core@^3.0.0",
+                "@inertiajs/react@^3.0.0",
+                "@tanstack/react-table@^8.21.3",
+                "react-hook-form@^7.83.0",
+                "zod@^4"
+            ],
+            "devDependencies": [
+                "@testing-library/jest-dom@^7.0.0",
+                "@testing-library/react@^16.3.2",
+                "@testing-library/user-event@^14.6.1",
+                "jsdom@^30.0.1",
+                "vitest@^4"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/data-table",
+                "WandryDev/president-ui/form"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/test/setup.ts",
+                    "type": "registry:file",
+                    "target": "~/resources/js/test/setup.ts"
+                },
+                {
+                    "path": "resources/js/test/inertia-page.ts",
+                    "type": "registry:file",
+                    "target": "~/resources/js/test/inertia-page.ts"
+                },
+                {
+                    "path": "resources/js/test/form-harness.tsx",
+                    "type": "registry:file",
+                    "target": "~/resources/js/test/form-harness.tsx"
+                },
+                {
+                    "path": "resources/js/test/table-harness.tsx",
+                    "type": "registry:file",
+                    "target": "~/resources/js/test/table-harness.tsx"
+                }
+            ]
+        },
+        {
+            "name": "textarea",
+            "type": "registry:ui",
+            "title": "Textarea",
+            "description": "The textarea primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/textarea.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/textarea.tsx"
+                }
+            ]
+        },
+        {
+            "name": "theme",
+            "type": "registry:item",
+            "title": "Theme",
+            "description": "Design tokens, dark mode and base layer. Import it from app.css after tailwindcss.",
+            "dependencies": [
+                "tw-animate-css@^1.4.0",
+                "shadcn@^4.21.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/font-sans",
+                "WandryDev/president-ui/font-mono"
+            ],
+            "files": [
+                {
+                    "path": "resources/css/theme.css",
+                    "type": "registry:file",
+                    "target": "~/resources/css/theme.css"
+                }
+            ]
+        },
+        {
+            "name": "toast",
+            "type": "registry:ui",
+            "title": "Toast",
+            "description": "The toast primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "lucide-react@^0.475.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/button",
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/toast.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/toast.tsx"
+                }
+            ]
+        },
+        {
+            "name": "toggle",
+            "type": "registry:ui",
+            "title": "Toggle",
+            "description": "The toggle primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "class-variance-authority@^0.7.1"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/toggle.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/toggle.tsx"
+                }
+            ]
+        },
+        {
+            "name": "toggle-group",
+            "type": "registry:ui",
+            "title": "Toggle Group",
+            "description": "The toggle group primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0",
+                "class-variance-authority@^0.7.1"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/separator",
+                "WandryDev/president-ui/toggle",
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/toggle-group.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/toggle-group.tsx"
+                }
+            ]
+        },
+        {
+            "name": "toolbar",
+            "type": "registry:ui",
+            "title": "Toolbar",
+            "description": "The toolbar primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/toolbar.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/toolbar.tsx"
+                }
+            ]
+        },
+        {
+            "name": "tooltip",
+            "type": "registry:ui",
+            "title": "Tooltip",
+            "description": "The tooltip primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "registryDependencies": [
+                "WandryDev/president-ui/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/tooltip.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/tooltip.tsx"
+                }
+            ]
+        },
+        {
+            "name": "ui-form",
+            "type": "registry:ui",
+            "title": "Form",
+            "description": "The form primitive.",
+            "dependencies": [
+                "@base-ui/react@^1.6.0"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/ui/form.tsx",
+                    "type": "registry:ui",
+                    "target": "~/resources/js/components/ui/form.tsx"
+                }
+            ]
+        },
+        {
+            "name": "use-media-query",
+            "type": "registry:hook",
+            "title": "Use Media Query",
+            "description": "Subscribes to a media query or a named breakpoint.",
+            "files": [
+                {
+                    "path": "resources/js/hooks/use-media-query.ts",
+                    "type": "registry:hook",
+                    "target": "~/resources/js/hooks/use-media-query.ts"
+                }
+            ]
+        },
+        {
+            "name": "utils",
+            "type": "registry:lib",
+            "title": "Utils",
+            "description": "The cn() class name helper.",
+            "dependencies": [
+                "clsx@^2.1.1",
+                "tailwind-merge@^3.0.1"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/lib/utils.ts",
+                    "type": "registry:file",
+                    "target": "~/resources/js/lib/utils.ts"
+                }
+            ]
+        },
+        {
+            "name": "all",
+            "type": "registry:item",
+            "title": "All",
+            "description": "Every item except test-utils. One command to sync an app with the registry.",
+            "registryDependencies": [
+                "WandryDev/president-ui/accordion",
+                "WandryDev/president-ui/alert",
+                "WandryDev/president-ui/alert-dialog",
+                "WandryDev/president-ui/alert-error",
+                "WandryDev/president-ui/aspect-ratio",
+                "WandryDev/president-ui/attachment",
+                "WandryDev/president-ui/autocomplete",
+                "WandryDev/president-ui/avatar",
+                "WandryDev/president-ui/badge",
+                "WandryDev/president-ui/breadcrumb",
+                "WandryDev/president-ui/bubble",
+                "WandryDev/president-ui/button",
+                "WandryDev/president-ui/button-group",
+                "WandryDev/president-ui/calendar",
+                "WandryDev/president-ui/card",
+                "WandryDev/president-ui/carousel",
+                "WandryDev/president-ui/chart",
+                "WandryDev/president-ui/checkbox",
+                "WandryDev/president-ui/checkbox-group",
+                "WandryDev/president-ui/collapsible",
+                "WandryDev/president-ui/combobox",
+                "WandryDev/president-ui/command",
+                "WandryDev/president-ui/context-menu",
+                "WandryDev/president-ui/data-table",
+                "WandryDev/president-ui/dialog",
+                "WandryDev/president-ui/direction",
+                "WandryDev/president-ui/drawer",
+                "WandryDev/president-ui/dropdown-menu",
+                "WandryDev/president-ui/empty",
+                "WandryDev/president-ui/field",
+                "WandryDev/president-ui/fieldset",
+                "WandryDev/president-ui/font-mono",
+                "WandryDev/president-ui/font-sans",
+                "WandryDev/president-ui/form",
+                "WandryDev/president-ui/frame",
+                "WandryDev/president-ui/group",
+                "WandryDev/president-ui/hover-card",
+                "WandryDev/president-ui/icon",
+                "WandryDev/president-ui/input",
+                "WandryDev/president-ui/input-group",
+                "WandryDev/president-ui/input-otp",
+                "WandryDev/president-ui/item",
+                "WandryDev/president-ui/kbd",
+                "WandryDev/president-ui/label",
+                "WandryDev/president-ui/marker",
+                "WandryDev/president-ui/menu",
+                "WandryDev/president-ui/menubar",
+                "WandryDev/president-ui/message",
+                "WandryDev/president-ui/message-scroller",
+                "WandryDev/president-ui/meter",
+                "WandryDev/president-ui/native-select",
+                "WandryDev/president-ui/navigation-menu",
+                "WandryDev/president-ui/number-field",
+                "WandryDev/president-ui/otp-field",
+                "WandryDev/president-ui/pagination",
+                "WandryDev/president-ui/placeholder-pattern",
+                "WandryDev/president-ui/popover",
+                "WandryDev/president-ui/preview-card",
+                "WandryDev/president-ui/progress",
+                "WandryDev/president-ui/radio-group",
+                "WandryDev/president-ui/resizable",
+                "WandryDev/president-ui/scroll-area",
+                "WandryDev/president-ui/segmented-control",
+                "WandryDev/president-ui/select",
+                "WandryDev/president-ui/separator",
+                "WandryDev/president-ui/sheet",
+                "WandryDev/president-ui/sidebar",
+                "WandryDev/president-ui/skeleton",
+                "WandryDev/president-ui/slider",
+                "WandryDev/president-ui/sonner",
+                "WandryDev/president-ui/spinner",
+                "WandryDev/president-ui/switch",
+                "WandryDev/president-ui/table",
+                "WandryDev/president-ui/tabs",
+                "WandryDev/president-ui/textarea",
+                "WandryDev/president-ui/theme",
+                "WandryDev/president-ui/toast",
+                "WandryDev/president-ui/toggle",
+                "WandryDev/president-ui/toggle-group",
+                "WandryDev/president-ui/toolbar",
+                "WandryDev/president-ui/tooltip",
+                "WandryDev/president-ui/ui-form",
+                "WandryDev/president-ui/use-media-query",
+                "WandryDev/president-ui/utils"
+            ]
+        }
+    ]
+}
