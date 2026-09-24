@@ -13,7 +13,7 @@
                 "lucide-react@^0.475.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -32,7 +32,7 @@
                 "class-variance-authority@^0.7.1"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -51,7 +51,7 @@
                 "@base-ui/react@^1.6.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -70,7 +70,7 @@
                 "lucide-react@^0.475.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/alert"
+                "WandryDev/president-ui/alert#v0.0.1"
             ],
             "files": [
                 {
@@ -86,7 +86,7 @@
             "title": "Aspect Ratio",
             "description": "The aspect ratio primitive.",
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -106,8 +106,8 @@
                 "class-variance-authority@^0.7.1"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/button",
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/button#v0.0.1",
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -127,9 +127,9 @@
                 "lucide-react@^0.475.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/input",
-                "WandryDev/president-ui/scroll-area",
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/input#v0.0.1",
+                "WandryDev/president-ui/scroll-area#v0.0.1",
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -148,7 +148,7 @@
                 "@base-ui/react@^1.6.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -168,7 +168,7 @@
                 "class-variance-authority@^0.7.1"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -188,7 +188,7 @@
                 "lucide-react@^0.475.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -208,7 +208,7 @@
                 "class-variance-authority@^0.7.1"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -228,8 +228,8 @@
                 "class-variance-authority@^0.7.1"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/spinner",
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/spinner#v0.0.1",
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -249,8 +249,8 @@
                 "class-variance-authority@^0.7.1"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/separator",
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/separator#v0.0.1",
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -270,7 +270,7 @@
                 "lucide-react@^0.475.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -289,7 +289,7 @@
                 "@base-ui/react@^1.6.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -309,8 +309,8 @@
                 "lucide-react@^0.475.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/button",
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/button#v0.0.1",
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -329,7 +329,7 @@
                 "recharts@3.8.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -348,7 +348,7 @@
                 "@base-ui/react@^1.6.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -367,7 +367,7 @@
                 "@base-ui/react@^1.6.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -386,7 +386,7 @@
                 "@base-ui/react@^1.6.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -406,9 +406,9 @@
                 "lucide-react@^0.475.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/input",
-                "WandryDev/president-ui/scroll-area",
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/input#v0.0.1",
+                "WandryDev/president-ui/scroll-area#v0.0.1",
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -428,8 +428,8 @@
                 "lucide-react@^0.475.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/autocomplete",
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/autocomplete#v0.0.1",
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -449,7 +449,7 @@
                 "lucide-react@^0.475.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -469,18 +469,18 @@
                 "lucide-react@^0.475.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/badge",
-                "WandryDev/president-ui/button",
-                "WandryDev/president-ui/checkbox",
-                "WandryDev/president-ui/dropdown-menu",
-                "WandryDev/president-ui/empty",
-                "WandryDev/president-ui/input",
-                "WandryDev/president-ui/input-group",
-                "WandryDev/president-ui/native-select",
-                "WandryDev/president-ui/separator",
-                "WandryDev/president-ui/skeleton",
-                "WandryDev/president-ui/table",
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/badge#v0.0.1",
+                "WandryDev/president-ui/button#v0.0.1",
+                "WandryDev/president-ui/checkbox#v0.0.1",
+                "WandryDev/president-ui/dropdown-menu#v0.0.1",
+                "WandryDev/president-ui/empty#v0.0.1",
+                "WandryDev/president-ui/input#v0.0.1",
+                "WandryDev/president-ui/input-group#v0.0.1",
+                "WandryDev/president-ui/native-select#v0.0.1",
+                "WandryDev/president-ui/separator#v0.0.1",
+                "WandryDev/president-ui/skeleton#v0.0.1",
+                "WandryDev/president-ui/table#v0.0.1",
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -570,9 +570,9 @@
                 "lucide-react@^0.475.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/button",
-                "WandryDev/president-ui/scroll-area",
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/button#v0.0.1",
+                "WandryDev/president-ui/scroll-area#v0.0.1",
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -608,9 +608,9 @@
                 "lucide-react@^0.475.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/button",
-                "WandryDev/president-ui/scroll-area",
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/button#v0.0.1",
+                "WandryDev/president-ui/scroll-area#v0.0.1",
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -630,7 +630,7 @@
                 "lucide-react@^0.475.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -649,7 +649,7 @@
                 "class-variance-authority@^0.7.1"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -668,7 +668,7 @@
                 "@base-ui/react@^1.6.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -687,7 +687,7 @@
                 "@base-ui/react@^1.6.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -744,24 +744,24 @@
                 "zod@^4"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/alert-error",
-                "WandryDev/president-ui/attachment",
-                "WandryDev/president-ui/badge",
-                "WandryDev/president-ui/button",
-                "WandryDev/president-ui/calendar",
-                "WandryDev/president-ui/checkbox",
-                "WandryDev/president-ui/field",
-                "WandryDev/president-ui/input",
-                "WandryDev/president-ui/input-group",
-                "WandryDev/president-ui/input-otp",
-                "WandryDev/president-ui/label",
-                "WandryDev/president-ui/popover",
-                "WandryDev/president-ui/radio-group",
-                "WandryDev/president-ui/select",
-                "WandryDev/president-ui/slider",
-                "WandryDev/president-ui/switch",
-                "WandryDev/president-ui/textarea",
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/alert-error#v0.0.1",
+                "WandryDev/president-ui/attachment#v0.0.1",
+                "WandryDev/president-ui/badge#v0.0.1",
+                "WandryDev/president-ui/button#v0.0.1",
+                "WandryDev/president-ui/calendar#v0.0.1",
+                "WandryDev/president-ui/checkbox#v0.0.1",
+                "WandryDev/president-ui/field#v0.0.1",
+                "WandryDev/president-ui/input#v0.0.1",
+                "WandryDev/president-ui/input-group#v0.0.1",
+                "WandryDev/president-ui/input-otp#v0.0.1",
+                "WandryDev/president-ui/label#v0.0.1",
+                "WandryDev/president-ui/popover#v0.0.1",
+                "WandryDev/president-ui/radio-group#v0.0.1",
+                "WandryDev/president-ui/select#v0.0.1",
+                "WandryDev/president-ui/slider#v0.0.1",
+                "WandryDev/president-ui/switch#v0.0.1",
+                "WandryDev/president-ui/textarea#v0.0.1",
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -862,7 +862,7 @@
             "title": "Frame",
             "description": "The frame primitive.",
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -882,8 +882,8 @@
                 "class-variance-authority@^0.7.1"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/separator",
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/separator#v0.0.1",
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -902,7 +902,7 @@
                 "@base-ui/react@^1.6.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -937,7 +937,7 @@
                 "@base-ui/react@^1.6.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -956,10 +956,10 @@
                 "class-variance-authority@^0.7.1"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/button",
-                "WandryDev/president-ui/input",
-                "WandryDev/president-ui/textarea",
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/button#v0.0.1",
+                "WandryDev/president-ui/input#v0.0.1",
+                "WandryDev/president-ui/textarea#v0.0.1",
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -979,7 +979,7 @@
                 "lucide-react@^0.475.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -999,8 +999,8 @@
                 "class-variance-authority@^0.7.1"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/separator",
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/separator#v0.0.1",
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1016,7 +1016,7 @@
             "title": "Kbd",
             "description": "The kbd primitive.",
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1035,7 +1035,7 @@
                 "@base-ui/react@^1.6.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1055,7 +1055,7 @@
                 "class-variance-authority@^0.7.1"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1075,7 +1075,7 @@
                 "lucide-react@^0.475.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1095,8 +1095,8 @@
                 "lucide-react@^0.475.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/dropdown-menu",
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/dropdown-menu#v0.0.1",
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1112,7 +1112,7 @@
             "title": "Message",
             "description": "The message primitive.",
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1132,8 +1132,8 @@
                 "lucide-react@^0.475.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/button",
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/button#v0.0.1",
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1152,7 +1152,7 @@
                 "@base-ui/react@^1.6.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1171,7 +1171,7 @@
                 "lucide-react@^0.475.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1192,7 +1192,7 @@
                 "lucide-react@^0.475.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1212,8 +1212,8 @@
                 "lucide-react@^0.475.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/label",
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/label#v0.0.1",
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1232,8 +1232,8 @@
                 "@base-ui/react@^1.6.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/separator",
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/separator#v0.0.1",
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1253,8 +1253,8 @@
                 "lucide-react@^0.475.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/button",
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/button#v0.0.1",
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1286,7 +1286,7 @@
                 "@base-ui/react@^1.6.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1305,7 +1305,7 @@
                 "@base-ui/react@^1.6.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1324,7 +1324,7 @@
                 "@base-ui/react@^1.6.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1343,7 +1343,7 @@
                 "@base-ui/react@^1.6.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1362,7 +1362,7 @@
                 "react-resizable-panels@^4.12.2"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1381,7 +1381,7 @@
                 "@base-ui/react@^1.6.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1418,7 +1418,7 @@
                 "lucide-react@^0.475.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1437,7 +1437,7 @@
                 "@base-ui/react@^1.6.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1457,9 +1457,9 @@
                 "lucide-react@^0.475.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/button",
-                "WandryDev/president-ui/scroll-area",
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/button#v0.0.1",
+                "WandryDev/president-ui/scroll-area#v0.0.1",
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1480,15 +1480,15 @@
                 "lucide-react@^0.475.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/button",
-                "WandryDev/president-ui/input",
-                "WandryDev/president-ui/scroll-area",
-                "WandryDev/president-ui/separator",
-                "WandryDev/president-ui/sheet",
-                "WandryDev/president-ui/skeleton",
-                "WandryDev/president-ui/tooltip",
-                "WandryDev/president-ui/use-media-query",
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/button#v0.0.1",
+                "WandryDev/president-ui/input#v0.0.1",
+                "WandryDev/president-ui/scroll-area#v0.0.1",
+                "WandryDev/president-ui/separator#v0.0.1",
+                "WandryDev/president-ui/sheet#v0.0.1",
+                "WandryDev/president-ui/skeleton#v0.0.1",
+                "WandryDev/president-ui/tooltip#v0.0.1",
+                "WandryDev/president-ui/use-media-query#v0.0.1",
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1504,7 +1504,7 @@
             "title": "Skeleton",
             "description": "The skeleton primitive.",
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1523,7 +1523,7 @@
                 "@base-ui/react@^1.6.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1560,7 +1560,7 @@
                 "lucide-react@^0.475.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1579,7 +1579,7 @@
                 "@base-ui/react@^1.6.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1598,7 +1598,7 @@
                 "@base-ui/react@^1.6.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1617,8 +1617,8 @@
                 "@base-ui/react@^1.6.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/segmented-control",
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/segmented-control#v0.0.1",
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1648,8 +1648,8 @@
                 "vitest@^4"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/data-table",
-                "WandryDev/president-ui/form"
+                "WandryDev/president-ui/data-table#v0.0.1",
+                "WandryDev/president-ui/form#v0.0.1"
             ],
             "files": [
                 {
@@ -1683,7 +1683,7 @@
                 "@base-ui/react@^1.6.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1703,8 +1703,8 @@
                 "shadcn@^4.21.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/font-sans",
-                "WandryDev/president-ui/font-mono"
+                "WandryDev/president-ui/font-sans#v0.0.1",
+                "WandryDev/president-ui/font-mono#v0.0.1"
             ],
             "files": [
                 {
@@ -1724,8 +1724,8 @@
                 "lucide-react@^0.475.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/button",
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/button#v0.0.1",
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1745,7 +1745,7 @@
                 "class-variance-authority@^0.7.1"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1765,9 +1765,9 @@
                 "class-variance-authority@^0.7.1"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/separator",
-                "WandryDev/president-ui/toggle",
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/separator#v0.0.1",
+                "WandryDev/president-ui/toggle#v0.0.1",
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1786,7 +1786,7 @@
                 "@base-ui/react@^1.6.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1805,7 +1805,7 @@
                 "@base-ui/react@^1.6.0"
             ],
             "registryDependencies": [
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/utils#v0.0.1"
             ],
             "files": [
                 {
@@ -1867,90 +1867,90 @@
             "title": "All",
             "description": "Every item except test-utils. One command to sync an app with the registry.",
             "registryDependencies": [
-                "WandryDev/president-ui/accordion",
-                "WandryDev/president-ui/alert",
-                "WandryDev/president-ui/alert-dialog",
-                "WandryDev/president-ui/alert-error",
-                "WandryDev/president-ui/aspect-ratio",
-                "WandryDev/president-ui/attachment",
-                "WandryDev/president-ui/autocomplete",
-                "WandryDev/president-ui/avatar",
-                "WandryDev/president-ui/badge",
-                "WandryDev/president-ui/breadcrumb",
-                "WandryDev/president-ui/bubble",
-                "WandryDev/president-ui/button",
-                "WandryDev/president-ui/button-group",
-                "WandryDev/president-ui/calendar",
-                "WandryDev/president-ui/card",
-                "WandryDev/president-ui/carousel",
-                "WandryDev/president-ui/chart",
-                "WandryDev/president-ui/checkbox",
-                "WandryDev/president-ui/checkbox-group",
-                "WandryDev/president-ui/collapsible",
-                "WandryDev/president-ui/combobox",
-                "WandryDev/president-ui/command",
-                "WandryDev/president-ui/context-menu",
-                "WandryDev/president-ui/data-table",
-                "WandryDev/president-ui/dialog",
-                "WandryDev/president-ui/direction",
-                "WandryDev/president-ui/drawer",
-                "WandryDev/president-ui/dropdown-menu",
-                "WandryDev/president-ui/empty",
-                "WandryDev/president-ui/field",
-                "WandryDev/president-ui/fieldset",
-                "WandryDev/president-ui/font-mono",
-                "WandryDev/president-ui/font-sans",
-                "WandryDev/president-ui/form",
-                "WandryDev/president-ui/frame",
-                "WandryDev/president-ui/group",
-                "WandryDev/president-ui/hover-card",
-                "WandryDev/president-ui/icon",
-                "WandryDev/president-ui/input",
-                "WandryDev/president-ui/input-group",
-                "WandryDev/president-ui/input-otp",
-                "WandryDev/president-ui/item",
-                "WandryDev/president-ui/kbd",
-                "WandryDev/president-ui/label",
-                "WandryDev/president-ui/marker",
-                "WandryDev/president-ui/menu",
-                "WandryDev/president-ui/menubar",
-                "WandryDev/president-ui/message",
-                "WandryDev/president-ui/message-scroller",
-                "WandryDev/president-ui/meter",
-                "WandryDev/president-ui/native-select",
-                "WandryDev/president-ui/navigation-menu",
-                "WandryDev/president-ui/number-field",
-                "WandryDev/president-ui/otp-field",
-                "WandryDev/president-ui/pagination",
-                "WandryDev/president-ui/placeholder-pattern",
-                "WandryDev/president-ui/popover",
-                "WandryDev/president-ui/preview-card",
-                "WandryDev/president-ui/progress",
-                "WandryDev/president-ui/radio-group",
-                "WandryDev/president-ui/resizable",
-                "WandryDev/president-ui/scroll-area",
-                "WandryDev/president-ui/segmented-control",
-                "WandryDev/president-ui/select",
-                "WandryDev/president-ui/separator",
-                "WandryDev/president-ui/sheet",
-                "WandryDev/president-ui/sidebar",
-                "WandryDev/president-ui/skeleton",
-                "WandryDev/president-ui/slider",
-                "WandryDev/president-ui/sonner",
-                "WandryDev/president-ui/spinner",
-                "WandryDev/president-ui/switch",
-                "WandryDev/president-ui/table",
-                "WandryDev/president-ui/tabs",
-                "WandryDev/president-ui/textarea",
-                "WandryDev/president-ui/theme",
-                "WandryDev/president-ui/toast",
-                "WandryDev/president-ui/toggle",
-                "WandryDev/president-ui/toggle-group",
-                "WandryDev/president-ui/toolbar",
-                "WandryDev/president-ui/tooltip",
-                "WandryDev/president-ui/ui-form",
-                "WandryDev/president-ui/use-media-query",
-                "WandryDev/president-ui/utils"
+                "WandryDev/president-ui/accordion#v0.0.1",
+                "WandryDev/president-ui/alert#v0.0.1",
+                "WandryDev/president-ui/alert-dialog#v0.0.1",
+                "WandryDev/president-ui/alert-error#v0.0.1",
+                "WandryDev/president-ui/aspect-ratio#v0.0.1",
+                "WandryDev/president-ui/attachment#v0.0.1",
+                "WandryDev/president-ui/autocomplete#v0.0.1",
+                "WandryDev/president-ui/avatar#v0.0.1",
+                "WandryDev/president-ui/badge#v0.0.1",
+                "WandryDev/president-ui/breadcrumb#v0.0.1",
+                "WandryDev/president-ui/bubble#v0.0.1",
+                "WandryDev/president-ui/button#v0.0.1",
+                "WandryDev/president-ui/button-group#v0.0.1",
+                "WandryDev/president-ui/calendar#v0.0.1",
+                "WandryDev/president-ui/card#v0.0.1",
+                "WandryDev/president-ui/carousel#v0.0.1",
+                "WandryDev/president-ui/chart#v0.0.1",
+                "WandryDev/president-ui/checkbox#v0.0.1",
+                "WandryDev/president-ui/checkbox-group#v0.0.1",
+                "WandryDev/president-ui/collapsible#v0.0.1",
+                "WandryDev/president-ui/combobox#v0.0.1",
+                "WandryDev/president-ui/command#v0.0.1",
+                "WandryDev/president-ui/context-menu#v0.0.1",
+                "WandryDev/president-ui/data-table#v0.0.1",
+                "WandryDev/president-ui/dialog#v0.0.1",
+                "WandryDev/president-ui/direction#v0.0.1",
+                "WandryDev/president-ui/drawer#v0.0.1",
+                "WandryDev/president-ui/dropdown-menu#v0.0.1",
+                "WandryDev/president-ui/empty#v0.0.1",
+                "WandryDev/president-ui/field#v0.0.1",
+                "WandryDev/president-ui/fieldset#v0.0.1",
+                "WandryDev/president-ui/font-mono#v0.0.1",
+                "WandryDev/president-ui/font-sans#v0.0.1",
+                "WandryDev/president-ui/form#v0.0.1",
+                "WandryDev/president-ui/frame#v0.0.1",
+                "WandryDev/president-ui/group#v0.0.1",
+                "WandryDev/president-ui/hover-card#v0.0.1",
+                "WandryDev/president-ui/icon#v0.0.1",
+                "WandryDev/president-ui/input#v0.0.1",
+                "WandryDev/president-ui/input-group#v0.0.1",
+                "WandryDev/president-ui/input-otp#v0.0.1",
+                "WandryDev/president-ui/item#v0.0.1",
+                "WandryDev/president-ui/kbd#v0.0.1",
+                "WandryDev/president-ui/label#v0.0.1",
+                "WandryDev/president-ui/marker#v0.0.1",
+                "WandryDev/president-ui/menu#v0.0.1",
+                "WandryDev/president-ui/menubar#v0.0.1",
+                "WandryDev/president-ui/message#v0.0.1",
+                "WandryDev/president-ui/message-scroller#v0.0.1",
+                "WandryDev/president-ui/meter#v0.0.1",
+                "WandryDev/president-ui/native-select#v0.0.1",
+                "WandryDev/president-ui/navigation-menu#v0.0.1",
+                "WandryDev/president-ui/number-field#v0.0.1",
+                "WandryDev/president-ui/otp-field#v0.0.1",
+                "WandryDev/president-ui/pagination#v0.0.1",
+                "WandryDev/president-ui/placeholder-pattern#v0.0.1",
+                "WandryDev/president-ui/popover#v0.0.1",
+                "WandryDev/president-ui/preview-card#v0.0.1",
+                "WandryDev/president-ui/progress#v0.0.1",
+                "WandryDev/president-ui/radio-group#v0.0.1",
+                "WandryDev/president-ui/resizable#v0.0.1",
+                "WandryDev/president-ui/scroll-area#v0.0.1",
+                "WandryDev/president-ui/segmented-control#v0.0.1",
+                "WandryDev/president-ui/select#v0.0.1",
+                "WandryDev/president-ui/separator#v0.0.1",
+                "WandryDev/president-ui/sheet#v0.0.1",
+                "WandryDev/president-ui/sidebar#v0.0.1",
+                "WandryDev/president-ui/skeleton#v0.0.1",
+                "WandryDev/president-ui/slider#v0.0.1",
+                "WandryDev/president-ui/sonner#v0.0.1",
+                "WandryDev/president-ui/spinner#v0.0.1",
+                "WandryDev/president-ui/switch#v0.0.1",
+                "WandryDev/president-ui/table#v0.0.1",
+                "WandryDev/president-ui/tabs#v0.0.1",
+                "WandryDev/president-ui/textarea#v0.0.1",
+                "WandryDev/president-ui/theme#v0.0.1",
+                "WandryDev/president-ui/toast#v0.0.1",
+                "WandryDev/president-ui/toggle#v0.0.1",
+                "WandryDev/president-ui/toggle-group#v0.0.1",
+                "WandryDev/president-ui/toolbar#v0.0.1",
+                "WandryDev/president-ui/tooltip#v0.0.1",
+                "WandryDev/president-ui/ui-form#v0.0.1",
+                "WandryDev/president-ui/use-media-query#v0.0.1",
+                "WandryDev/president-ui/utils#v0.0.1"
             ]
         }
     ]
