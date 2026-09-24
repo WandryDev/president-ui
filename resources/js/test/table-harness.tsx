@@ -2,12 +2,11 @@ import type { Table } from '@tanstack/react-table';
 import { render, screen, within } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import type { ReactNode } from 'react';
-import type {
-    DataTableBaseProps,
-    DataTableColumn,
-    UseDataTableOptions,
-} from '@/components/data-table';
-import { DataTable, useDataTable } from '@/components/data-table';
+import type { DataTableBaseProps } from '@/components/data-table/data-table';
+import { DataTable } from '@/components/data-table/data-table';
+import type { DataTableColumn } from '@/components/data-table/types';
+import type { UseDataTableOptions } from '@/components/data-table/use-data-table';
+import { useDataTable } from '@/components/data-table/use-data-table';
 
 export type Person = {
     id: string;

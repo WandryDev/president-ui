@@ -25,6 +25,25 @@ Shared UI for `president-saas` and `president-saas-platform`, distributed as a [
 
 `dependencies` come from bare imports (`react` and `react-dom` excluded, subpaths collapsed to the package) and carry the range from `package.json`; test tooling (vitest, jsdom, Testing Library) goes to `devDependencies`. `registryDependencies` come from `@/…` imports that land in another item. The build fails on a package missing from `package.json` and on a source file no item ships — a new top-level file needs a catalogue entry in `scripts/build-registry.ts`.
 
+## Installing in an app
+
+The repository is private, so the CLI needs `GH_TOKEN` (a fine-grained token with Contents: read, or `gh auth token`). shadcn 4.21 resolves a tag with `git ls-remote`, which does not see `GH_TOKEN`; its API fallback asks for a branch first and GitHub answers 422 instead of 404, so tags never resolve. Hand the same token to git for that one command:
+
+```sh
+export GH_TOKEN="${GH_TOKEN:-$(gh auth token)}"
+GIT_CONFIG_COUNT=1 \
+GIT_CONFIG_KEY_0='http.https://github.com/.extraheader' \
+GIT_CONFIG_VALUE_0="AUTHORIZATION: basic $(printf 'x-access-token:%s' "$GH_TOKEN" | base64)" \
+npx shadcn@latest add "WandryDev/president-ui/all#$VERSION" "WandryDev/president-ui/test-utils#$VERSION" --overwrite --yes
+```
+
+In CI, `actions/checkout` already sets that header for its own repository only; another repository needs the snippet above.
+
+The CLI rewrites code on install, so two rules keep the app mirror byte-identical to this repository:
+
+- Import another item through the file that declares the symbol, never through a directory `index`. The CLI re-resolves imports against the files it wrote and prefers `<dir>.tsx` over `<dir>/index.ts`, so `@/components/form` would become `@/components/form/form`. `registry:build` rejects such imports.
+- Write the directive as `"use client";`. Without the semicolon the CLI strips it (`rsc: false`).
+
 ## Verification
 
 ```sh

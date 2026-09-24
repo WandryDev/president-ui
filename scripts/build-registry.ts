@@ -372,6 +372,15 @@ function build(ref: string | null): RegistryItem[] {
                                 `${file} reaches into ${dependency} with a relative import; use "@/…"`,
                             );
                         }
+                        // On install the CLI re-resolves imports against the
+                        // files it wrote and prefers any `<dir>.tsx` over
+                        // `<dir>/index.ts`: "@/components/form" became
+                        // "@/components/form/form" and lost the re-exports.
+                        if (/\/index\.tsx?$/.test(target)) {
+                            fail(
+                                `${file} imports "${specifier}" through an index; import the file that declares it`,
+                            );
+                        }
                         registryDependencies.add(dependency);
                     }
                     continue;

@@ -6,7 +6,7 @@ import type { ReactNode } from 'react';
 import type { DefaultValues, FieldValues } from 'react-hook-form';
 import { vi } from 'vitest';
 import type { ZodType, z } from 'zod';
-import { Form } from '@/components/form';
+import { Form } from '@/components/form/form';
 
 export const TEST_ACTION = { url: '/test', method: 'post' } as const;
 
