@@ -47,5 +47,3 @@ jobs:
       - name: Tag installs from GitHub
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
         run: bunx shadcn registry validate "${{ github.repository }}#${{ github.ref_name }}"
-        env:
-          GH_TOKEN: ${{ github.token }}

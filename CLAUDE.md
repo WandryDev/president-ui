@@ -27,17 +27,13 @@ Shared UI for `president-saas` and `president-saas-platform`, distributed as a [
 
 ## Installing in an app
 
-The repository is private, so the CLI needs `GH_TOKEN` (a fine-grained token with Contents: read, or `gh auth token`). shadcn 4.21 resolves a tag with `git ls-remote`, which does not see `GH_TOKEN`; its API fallback asks for a branch first and GitHub answers 422 instead of 404, so tags never resolve. Hand the same token to git for that one command:
+The repository is public, so no token is needed:
 
 ```sh
-export GH_TOKEN="${GH_TOKEN:-$(gh auth token)}"
-GIT_CONFIG_COUNT=1 \
-GIT_CONFIG_KEY_0='http.https://github.com/.extraheader' \
-GIT_CONFIG_VALUE_0="AUTHORIZATION: basic $(printf 'x-access-token:%s' "$GH_TOKEN" | base64)" \
-npx shadcn@latest add "WandryDev/president-ui/all#$VERSION" "WandryDev/president-ui/test-utils#$VERSION" --overwrite --yes
+bunx --bun shadcn@latest add "WandryDev/president-ui/all#$VERSION" "WandryDev/president-ui/test-utils#$VERSION" --overwrite --yes
 ```
 
-In CI, `actions/checkout` already sets that header for its own repository only; another repository needs the snippet above.
+Keep it public. shadcn 4.21 resolves a tag with `git ls-remote`, which never sees `GH_TOKEN`; for a private repository its API fallback asks for a branch first, GitHub answers 422 instead of 404, and tags never resolve.
 
 The CLI rewrites code on install, so two rules keep the app mirror byte-identical to this repository:
 
@@ -55,7 +51,7 @@ bun run registry:check
 
 ## Releases
 
-Semver tags; apps pin `#vX.Y.Z` and need shadcn ≥ 4.19 (private GitHub registries).
+Semver tags; apps pin `#vX.Y.Z` and need shadcn ≥ 4.10 (GitHub registries).
 
 The CLI resolves each `registryDependency` independently: without a `#ref` it comes from the default branch, not from the tag the parent was installed from. So every release pins them:
 
