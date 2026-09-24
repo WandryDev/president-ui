@@ -1,0 +1,3 @@
+/* Registry dev entry only — apps keep their own app.css. */
+@import "tailwindcss";
+@import "./theme.css";

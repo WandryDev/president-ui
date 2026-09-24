@@ -1,0 +1,8 @@
+@import "@fontsource-variable/onest";
+
+@theme {
+    --font-sans:
+        "Onest Variable", "Onest", ui-sans-serif, system-ui, -apple-system,
+        "Segoe UI", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+        "Segoe UI Symbol", "Noto Color Emoji";
+}

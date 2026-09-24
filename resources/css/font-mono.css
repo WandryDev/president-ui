@@ -1,0 +1,7 @@
+@import "@fontsource-variable/geist-mono";
+
+@theme {
+    --font-mono:
+        "Geist Mono Variable", "Geist Mono", ui-monospace, SFMono-Regular,
+        Menlo, Monaco, Consolas, monospace;
+}
