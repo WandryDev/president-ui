@@ -1,14 +1,14 @@
 /**
- * Generates registry.json from the sources under resources/.
+ * Generates registry.json from the sources under resources/, then public/r
+ * with `shadcn build`.
  *
- *   bun scripts/build-registry.ts              # write registry.json
- *   bun scripts/build-registry.ts --ref v1.2.3 # pin internal registryDependencies to a tag
- *   bun scripts/build-registry.ts --check      # fail if registry.json is stale
+ *   bun scripts/build-registry.ts          # write registry.json and public/r
+ *   bun scripts/build-registry.ts --check  # fail if either is stale
  *
- * The CLI resolves every registryDependency on its own: one without a ref
- * comes from the default branch, whatever tag its parent was installed from.
- * So a release pins them all with --ref, and later builds keep the ref already
- * committed until the next release replaces it.
+ * Apps install through a namespace in their components.json that points at
+ * public/r of one tag. registryDependencies are written as `@president/<name>`,
+ * so the CLI fetches them through that same URL — from the same tag — and
+ * nothing here has to be pinned.
  *
  * Items come from a fixed catalogue below. Dependencies are read from each
  * file's imports: bare specifiers become `dependencies`, `@/…` specifiers that
@@ -17,13 +17,24 @@
  * so does a source file that no item ships. Dependencies carry the version
  * range from package.json, so a sync never drifts an app onto another major.
  */
-import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
+import {
+    existsSync,
+    mkdtempSync,
+    readdirSync,
+    readFileSync,
+    rmSync,
+    writeFileSync,
+} from 'node:fs';
 import { builtinModules } from 'node:module';
+import { tmpdir } from 'node:os';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
 
 const REGISTRY = 'WandryDev/president-ui';
+/** The key apps give this registry under `registries` in components.json. */
+const NAMESPACE = '@president';
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const JS = 'resources/js';
 
@@ -317,15 +328,7 @@ function resolveLocal(specifier: string, from: string): string | null {
     return null;
 }
 
-function address(name: string, ref: string | null): string {
-    return `${REGISTRY}/${name}${ref ? `#${ref}` : ''}`;
-}
-
-function qualify(name: string, ref: string | null): string {
-    return name.includes('/') ? name : address(name, ref);
-}
-
-function build(ref: string | null): RegistryItem[] {
+function build(): RegistryItem[] {
     const sources = sourceItems();
     const owner = new Map<string, string>();
 
@@ -456,66 +459,78 @@ function build(ref: string | null): RegistryItem[] {
             devDependencies: item.devDependencies.map(versioned),
         }),
         ...(item.registryDependencies && {
-            registryDependencies: item.registryDependencies.map((name) =>
-                qualify(name, ref),
+            registryDependencies: item.registryDependencies.map(
+                (name) => `${NAMESPACE}/${name}`,
             ),
         }),
     }));
 }
 
 const OUTPUT = join(ROOT, 'registry.json');
+const PUBLIC = join(ROOT, 'public/r');
 
-/** The tag the committed registry.json pins its dependencies to, if any. */
-function committedRef(): string | null {
-    if (!existsSync(OUTPUT)) {
-        return null;
-    }
-
-    const match = readFileSync(OUTPUT, 'utf8').match(
-        new RegExp(`"${REGISTRY}/[^"#]+#([^"]+)"`),
+function shadcnBuild(output: string): void {
+    execFileSync(
+        join(ROOT, 'node_modules/.bin/shadcn'),
+        ['build', OUTPUT, '--output', output],
+        { cwd: ROOT, stdio: 'pipe' },
     );
-
-    return match ? match[1] : null;
 }
 
-function parseRef(argv: string[]): string | null {
-    const index = argv.indexOf('--ref');
-
-    if (index === -1) {
-        return committedRef();
+/** File name → content of every item JSON in a directory. */
+function snapshot(dir: string): Map<string, string> {
+    if (!existsSync(dir)) {
+        return new Map();
     }
 
-    const ref = argv[index + 1];
-
-    if (!ref || !/^v\d+\.\d+\.\d+(?:-[\w.]+)?$/.test(ref)) {
-        fail('--ref expects a semver tag like v1.2.3');
-    }
-
-    return ref;
+    return new Map(
+        readdirSync(dir)
+            .sort(byName)
+            .map((file) => [file, readFileSync(join(dir, file), 'utf8')]),
+    );
 }
-
-const argv = process.argv.slice(2);
-const ref = parseRef(argv);
 
 const registry = {
     $schema: 'https://ui.shadcn.com/schema/registry.json',
     name: 'president-ui',
     homepage: `https://github.com/${REGISTRY}`,
-    items: build(ref),
+    items: build(),
 };
 
 const output = `${JSON.stringify(registry, null, 4)}\n`;
-const summary = `${registry.items.length} items${ref ? `, pinned to ${ref}` : ''}`;
+const summary = `${registry.items.length} items`;
 
-if (argv.includes('--check')) {
+if (process.argv.includes('--check')) {
     if (!existsSync(OUTPUT) || readFileSync(OUTPUT, 'utf8') !== output) {
         fail(
             'registry.json is stale; run `bun run registry:build` and commit it',
         );
     }
 
-    console.log(`registry.json is up to date — ${summary}`);
+    const fresh = mkdtempSync(join(tmpdir(), 'president-ui-'));
+
+    try {
+        shadcnBuild(fresh);
+
+        const expected = snapshot(fresh);
+        const actual = snapshot(PUBLIC);
+        const stale = [...new Set([...expected.keys(), ...actual.keys()])]
+            .filter((file) => expected.get(file) !== actual.get(file))
+            .sort(byName);
+
+        if (stale.length > 0) {
+            fail(
+                `public/r is stale (${stale.join(', ')}); run \`bun run registry:build\` and commit it`,
+            );
+        }
+    } finally {
+        rmSync(fresh, { recursive: true, force: true });
+    }
+
+    console.log(`registry.json and public/r are up to date — ${summary}`);
 } else {
     writeFileSync(OUTPUT, output);
-    console.log(`registry.json — ${summary}`);
+    rmSync(PUBLIC, { recursive: true, force: true });
+    shadcnBuild(PUBLIC);
+    console.log(`registry.json and public/r — ${summary}`);
 }

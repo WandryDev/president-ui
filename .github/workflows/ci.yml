@@ -37,13 +37,12 @@ jobs:
       - name: Tests
         run: bun run test
 
-      - name: registry.json is up to date and valid
+      - name: registry.json and public/r are up to date and valid
         run: bun run registry:check
 
-      - name: registry.json is pinned to this tag
+      - name: Tag is served from raw.githubusercontent.com
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
-        run: bun scripts/build-registry.ts --check --ref "${{ github.ref_name }}"
-
-      - name: Tag installs from GitHub
-        if: ${{ startsWith(github.ref, 'refs/tags/') }}
-        run: bunx shadcn registry validate "${{ github.repository }}#${{ github.ref_name }}"
+        run: |
+          for file in public/r/*.json; do
+            curl -fsS -o /dev/null "https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/$file" || { echo "missing $file"; exit 1; }
+          done

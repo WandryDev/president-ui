@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "placeholder-pattern",
+  "title": "Placeholder Pattern",
+  "description": "The placeholder pattern primitive.",
+  "files": [
+    {
+      "path": "resources/js/components/ui/placeholder-pattern.tsx",
+      "content": "import { useId } from 'react';\n\ninterface PlaceholderPatternProps {\n    className?: string;\n}\n\nexport function PlaceholderPattern({ className }: PlaceholderPatternProps) {\n    const patternId = useId();\n\n    return (\n        <svg className={className} fill=\"none\">\n            <defs>\n                <pattern id={patternId} x=\"0\" y=\"0\" width=\"10\" height=\"10\" patternUnits=\"userSpaceOnUse\">\n                    <path d=\"M-3 13 15-5M-5 5l18-18M-1 21 17 3\"></path>\n                </pattern>\n            </defs>\n            <rect stroke=\"none\" fill={`url(#${patternId})`} width=\"100%\" height=\"100%\"></rect>\n        </svg>\n    );\n}\n",
+      "type": "registry:ui",
+      "target": "~/resources/js/components/ui/placeholder-pattern.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

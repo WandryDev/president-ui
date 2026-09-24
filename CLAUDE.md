@@ -1,10 +1,10 @@
 # president-ui
 
-Shared UI for `president-saas` and `president-saas-platform`, distributed as a [shadcn GitHub registry](https://ui.shadcn.com/docs/registry/github). Apps install it with `shadcn add WandryDev/president-ui/<item>#vX.Y.Z` through their `scripts/ui-sync.sh`.
+Shared UI for `president-saas` and `president-saas-platform`, distributed as a [shadcn registry](https://ui.shadcn.com/docs/registry) served from this repository's tags. Apps register it as `@president` in `components.json` and sync with `bun run ui:sync`.
 
 ## Ground rules
 
-- This repository is the only source of truth. In the apps, `components/{ui,form,data-table}`, `resources/css/theme.css`, `lib/utils.ts`, `lib/segmented-control.ts`, `hooks/use-media-query.ts` and `test/{setup,inertia-page,form-harness,table-harness}` are mirrors and are never edited there. An app that needs different behaviour gets a new prop or a new item here.
+- This repository is the only source of truth. In the apps, `components/{ui,form,data-table}`, `resources/css/{theme,font-sans,font-mono}.css`, `lib/utils.ts`, `lib/segmented-control.ts`, `hooks/use-media-query.ts` and `test/{setup,inertia-page,form-harness,table-harness}` are mirrors and are never edited there. An app that needs different behaviour gets a new prop or a new item here.
 - The layout mirrors the Laravel apps (`resources/js`, alias `@/*` → `resources/js/*`), so a file's `path` equals its `target` and imports need no rewriting.
 - Code here must not import app code (`@/types`, `@/routes`, `@/actions`, `@/pages`, …). `registry:build` fails on any `@/…` import that no item owns.
 - `components/ui`, `hooks/use-media-query.ts` and `lib/segmented-control.ts` come from `@coss` and keep its formatting; biome skips them. Everything else follows `biome.json`, which matches the apps.
@@ -13,7 +13,7 @@ Shared UI for `president-saas` and `president-saas-platform`, distributed as a [
 
 ## Items
 
-`registry.json` is generated — never edit it by hand. Run `bun run registry:build` after adding, removing or changing imports of any file, and commit the result; CI fails when it is stale.
+`registry.json` and `public/r/*.json` are generated — never edit them by hand. Run `bun run registry:build` after changing any shipped file and commit the result; CI fails when either is stale. `public/r` is what apps download: one JSON per item with the file contents inlined, built by `shadcn build` from `registry.json`.
 
 - `components/ui/<name>.tsx` → item `<name>` (`registry:ui`). `ui/form.tsx` is published as `ui-form`, because `form` is the form module.
 - `components/form/*` → `form`, `components/data-table/*` → `data-table`. One item each; their `index.ts` re-exports everything. `*.test.tsx` files are left out.
@@ -23,17 +23,25 @@ Shared UI for `president-saas` and `president-saas-platform`, distributed as a [
 - Every file has an explicit `target: "~/<path>"`. `utils` ships as `registry:file`, because the CLI never overwrites an existing `lib/utils.ts` of type `registry:lib` in a Laravel project, even with `--overwrite`.
 - `all` depends on every item except `test-utils`.
 
-`dependencies` come from bare imports (`react` and `react-dom` excluded, subpaths collapsed to the package) and carry the range from `package.json`; test tooling (vitest, jsdom, Testing Library) goes to `devDependencies`. `registryDependencies` come from `@/…` imports that land in another item. The build fails on a package missing from `package.json` and on a source file no item ships — a new top-level file needs a catalogue entry in `scripts/build-registry.ts`.
+`dependencies` come from bare imports (`react` and `react-dom` excluded, subpaths collapsed to the package) and carry the range from `package.json`; test tooling (vitest, jsdom, Testing Library) goes to `devDependencies`. `registryDependencies` come from `@/…` imports that land in another item and are written as `@president/<name>`, so the CLI fetches them through the app's namespace — from the same tag as the item that needs them. The build fails on a package missing from `package.json` and on a source file no item ships — a new top-level file needs a catalogue entry in `scripts/build-registry.ts`.
 
 ## Installing in an app
 
-The repository is public, so no token is needed:
+An app declares the registry once, pinned to a tag, in `components.json`:
 
-```sh
-bunx --bun shadcn@latest add "WandryDev/president-ui/all#$VERSION" "WandryDev/president-ui/test-utils#$VERSION" --overwrite --yes
+```json
+"registries": {
+    "@president": "https://raw.githubusercontent.com/WandryDev/president-ui/vX.Y.Z/public/r/{name}.json"
+}
 ```
 
-Keep it public. shadcn 4.21 resolves a tag with `git ls-remote`, which never sees `GH_TOKEN`; for a private repository its API fallback asks for a branch first, GitHub answers 422 instead of 404, and tags never resolve.
+and syncs with a `package.json` script:
+
+```json
+"ui:sync": "bunx --bun shadcn@4.21.0 add @president/all @president/test-utils --overwrite --yes"
+```
+
+The tag in that URL is the only place an app records its version. The repository must stay public: raw.githubusercontent.com serves it without a token.
 
 The CLI rewrites code on install, so two rules keep the app mirror byte-identical to this repository:
 
@@ -51,15 +59,11 @@ bun run registry:check
 
 ## Releases
 
-Semver tags; apps pin `#vX.Y.Z` and need shadcn ≥ 4.10 (GitHub registries).
-
-The CLI resolves each `registryDependency` independently: without a `#ref` it comes from the default branch, not from the tag the parent was installed from. So every release pins them:
+Semver tags. Apps move to a release by changing the tag in their `@president` URL and running `ui:sync`.
 
 1. Move "Unreleased" in `CHANGELOG.md` under the new version; API breaks go under "Breaking".
-2. `bun run registry:build --ref vX.Y.Z` and commit `registry.json` with the changelog.
-3. `git tag -a vX.Y.Z -m vX.Y.Z && git push origin main vX.Y.Z`. On a tag, CI fails unless `registry.json` is pinned to that same tag, then validates the tag as a GitHub source.
-
-Later builds keep the committed ref until the next release replaces it. Until then an item added on `main` points its dependencies at the previous tag, where it does not exist yet — install from tags only.
+2. `bun run registry:check` — `registry.json` and `public/r` must be committed and fresh.
+3. `git tag -a vX.Y.Z -m vX.Y.Z && git push origin main vX.Y.Z`. On a tag, CI checks that raw.githubusercontent.com serves `public/r` for it.
 
 # Forms
 

@@ -21,6 +21,7 @@
             "!resources/js/wayfinder",
             "!resources/js/components/ui",
             "!registry.json",
+            "!public/r",
             "!resources/js/hooks/use-media-query.ts",
             "!resources/js/lib/segmented-control.ts",
             "!resources/views/mail",

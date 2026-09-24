@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "font-sans",
+  "title": "Onest",
+  "description": "Onest as the sans and heading typeface.",
+  "dependencies": [
+    "@fontsource-variable/onest@^5.3.1"
+  ],
+  "files": [
+    {
+      "path": "resources/css/font-sans.css",
+      "content": "@import \"@fontsource-variable/onest\";\n\n@theme {\n    --font-sans:\n        \"Onest Variable\", \"Onest\", ui-sans-serif, system-ui, -apple-system,\n        \"Segoe UI\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\",\n        \"Segoe UI Symbol\", \"Noto Color Emoji\";\n}\n",
+      "type": "registry:file",
+      "target": "~/resources/css/font-sans.css"
+    }
+  ],
+  "type": "registry:item"
+}

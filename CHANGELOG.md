@@ -1,8 +1,14 @@
 # Changelog
 
-Apps pin a tag (`#vX.Y.Z`) in `scripts/ui-sync.sh`. Every release lists what changed per item; anything that breaks an existing call site goes under **Breaking**.
+Apps pin a tag in the `@president` URL of their `components.json`. Every release lists what changed per item; anything that breaks an existing call site goes under **Breaking**.
 
-## Unreleased
+## v0.0.3
+
+### Breaking
+
+- Install through the `@president` namespace (`registries` in `components.json`, pointing at `public/r` of a tag) instead of `WandryDev/president-ui/<item>#vX.Y.Z`. `registryDependencies` are `@president/<name>` and follow the tag of the namespace URL.
+
+## v0.0.2
 
 Initial extraction from `president-saas-platform`.
 

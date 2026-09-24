@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "font-mono",
+  "title": "Geist Mono",
+  "description": "Geist Mono as the monospace typeface.",
+  "dependencies": [
+    "@fontsource-variable/geist-mono@^5.2.0"
+  ],
+  "files": [
+    {
+      "path": "resources/css/font-mono.css",
+      "content": "@import \"@fontsource-variable/geist-mono\";\n\n@theme {\n    --font-mono:\n        \"Geist Mono Variable\", \"Geist Mono\", ui-monospace, SFMono-Regular,\n        Menlo, Monaco, Consolas, monospace;\n}\n",
+      "type": "registry:file",
+      "target": "~/resources/css/font-mono.css"
+    }
+  ],
+  "type": "registry:item"
+}

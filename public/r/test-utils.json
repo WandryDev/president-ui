@@ -1,0 +1,51 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "test-utils",
+  "title": "Test Utils",
+  "description": "Vitest setup, the Inertia page stub and the form and table harnesses.",
+  "dependencies": [
+    "@inertiajs/core@^3.0.0",
+    "@inertiajs/react@^3.0.0",
+    "@tanstack/react-table@^8.21.3",
+    "react-hook-form@^7.83.0",
+    "zod@^4"
+  ],
+  "devDependencies": [
+    "@testing-library/jest-dom@^7.0.0",
+    "@testing-library/react@^16.3.2",
+    "@testing-library/user-event@^14.6.1",
+    "jsdom@^30.0.1",
+    "vitest@^4"
+  ],
+  "registryDependencies": [
+    "@president/data-table",
+    "@president/form"
+  ],
+  "files": [
+    {
+      "path": "resources/js/test/setup.ts",
+      "content": "import '@testing-library/jest-dom/vitest';\nimport { router as coreRouter } from '@inertiajs/core';\nimport type * as InertiaReact from '@inertiajs/react';\nimport { cleanup, configure } from '@testing-library/react';\nimport { afterEach, beforeEach, vi } from 'vitest';\n\n// The app marks elements with data-test, not the library's data-testid default.\nconfigure({ testIdAttribute: 'data-test' });\n\n// Every form submits through router.visit. Replacing it lets tests read the\n// outgoing payload and drive the success and error callbacks by hand.\nvi.mock('@inertiajs/react', async (importOriginal) => {\n    const actual = await importOriginal<typeof InertiaReact>();\n    const { inertiaPage } = await import('./inertia-page');\n\n    return {\n        ...actual,\n        router: { ...actual.router, visit: vi.fn() },\n        // Head needs the head manager that createInertiaApp installs, which no\n        // component test bootstraps. Nothing asserts on document.title.\n        Head: () => null,\n        usePage: () => inertiaPage,\n    };\n});\n\n// Base UI popups and sliders measure and capture pointers. jsdom implements\n// none of it, so the bare minimum is stubbed here.\nclass ResizeObserverStub {\n    observe(): void {}\n    unobserve(): void {}\n    disconnect(): void {}\n}\n\nglobalThis.ResizeObserver ??= ResizeObserverStub as never;\n\nElement.prototype.scrollIntoView ??= function scrollIntoView() {};\ndocument.elementFromPoint ??= function elementFromPoint() {\n    return null;\n};\nElement.prototype.getAnimations ??= function getAnimations() {\n    return [];\n};\nElement.prototype.hasPointerCapture ??= function hasPointerCapture() {\n    return false;\n};\nElement.prototype.setPointerCapture ??= function setPointerCapture() {};\nElement.prototype.releasePointerCapture ??= function releasePointerCapture() {};\n\nglobalThis.matchMedia ??= ((query: string) => ({\n    matches: false,\n    media: query,\n    onchange: null,\n    addListener: () => {},\n    removeListener: () => {},\n    addEventListener: () => {},\n    removeEventListener: () => {},\n    dispatchEvent: () => false,\n})) as never;\n\nbeforeEach(() => {\n    // Link reaches the core router directly, so the mock on the copy\n    // re-exported from @inertiajs/react never sees the call. Nothing boots an\n    // Inertia app in a component test, and a real visit throws on the page it\n    // has not got.\n    vi.spyOn(coreRouter, 'visit').mockImplementation(() => {});\n    vi.spyOn(coreRouter, 'prefetch').mockImplementation(() => {});\n});\n\nafterEach(() => {\n    cleanup();\n\n    // The router mock is created inside a vi.mock factory, which the\n    // restoreMocks option does not reach, so its calls are cleared by hand.\n    vi.clearAllMocks();\n});\n",
+      "type": "registry:file",
+      "target": "~/resources/js/test/setup.ts"
+    },
+    {
+      "path": "resources/js/test/inertia-page.ts",
+      "content": "/**\n * Backing store for the mocked `usePage`. Page tests assign the props their\n * component reads before rendering it, and `url` for anything that highlights\n * the current route.\n */\nexport const inertiaPage: { props: Record<string, unknown>; url: string } = {\n    props: {},\n    url: '/',\n};\n",
+      "type": "registry:file",
+      "target": "~/resources/js/test/inertia-page.ts"
+    },
+    {
+      "path": "resources/js/test/form-harness.tsx",
+      "content": "import type { VisitOptions } from '@inertiajs/core';\nimport { router } from '@inertiajs/react';\nimport { act, render, screen } from '@testing-library/react';\nimport { userEvent } from '@testing-library/user-event';\nimport type { ReactNode } from 'react';\nimport type { DefaultValues, FieldValues } from 'react-hook-form';\nimport { vi } from 'vitest';\nimport type { ZodType, z } from 'zod';\nimport { Form } from '@/components/form/form';\n\nexport const TEST_ACTION = { url: '/test', method: 'post' } as const;\n\nexport const SUBMIT_LABEL = 'Save';\n\ntype RenderFormOptions<TSchema extends ZodType<unknown, FieldValues>> = {\n    schema: TSchema;\n    defaultValues: DefaultValues<z.input<TSchema> & FieldValues>;\n    children: ReactNode;\n};\n\nexport function renderForm<TSchema extends ZodType<unknown, FieldValues>>({\n    schema,\n    defaultValues,\n    children,\n}: RenderFormOptions<TSchema>) {\n    const user = userEvent.setup();\n\n    render(\n        <Form\n            action={TEST_ACTION}\n            schema={schema}\n            defaultValues={defaultValues}\n        >\n            {children}\n            <button type=\"submit\">{SUBMIT_LABEL}</button>\n        </Form>,\n    );\n\n    return { user };\n}\n\nexport async function submitForm(\n    user: ReturnType<typeof userEvent.setup>,\n): Promise<void> {\n    await user.click(screen.getByRole('button', { name: SUBMIT_LABEL }));\n}\n\nfunction lastVisit(): [string, VisitOptions] {\n    const calls = vi.mocked(router.visit).mock.calls;\n\n    if (calls.length === 0) {\n        throw new Error(\n            'The form did not submit. Validation most likely rejected the values.',\n        );\n    }\n\n    return calls[calls.length - 1] as [string, VisitOptions];\n}\n\n/** The payload the form last handed to Inertia. */\nexport function submittedData(): Record<string, unknown> {\n    return lastVisit()[1].data as Record<string, unknown>;\n}\n\nexport function submittedUrl(): string {\n    return lastVisit()[0];\n}\n\nexport function didSubmit(): boolean {\n    return vi.mocked(router.visit).mock.calls.length > 0;\n}\n\n/** Replays a Laravel 422 response through the callbacks Inertia would have called. */\nexport async function respondWithErrors(\n    errors: Record<string, string>,\n): Promise<void> {\n    const [, options] = lastVisit();\n\n    await act(async () => {\n        options.onError?.(errors);\n        options.onFinish?.({} as never);\n    });\n}\n\nexport async function respondWithSuccess(): Promise<void> {\n    const [, options] = lastVisit();\n\n    await act(async () => {\n        options.onSuccess?.({} as never);\n        options.onFinish?.({} as never);\n    });\n}\n",
+      "type": "registry:file",
+      "target": "~/resources/js/test/form-harness.tsx"
+    },
+    {
+      "path": "resources/js/test/table-harness.tsx",
+      "content": "import type { Table } from '@tanstack/react-table';\nimport { render, screen, within } from '@testing-library/react';\nimport { userEvent } from '@testing-library/user-event';\nimport type { ReactNode } from 'react';\nimport type { DataTableBaseProps } from '@/components/data-table/data-table';\nimport { DataTable } from '@/components/data-table/data-table';\nimport type { DataTableColumn } from '@/components/data-table/types';\nimport type { UseDataTableOptions } from '@/components/data-table/use-data-table';\nimport { useDataTable } from '@/components/data-table/use-data-table';\n\nexport type Person = {\n    id: string;\n    name: string;\n    email: string;\n    age: number;\n};\n\nexport const people: Person[] = [\n    { id: '1', name: 'Ada Lovelace', email: 'ada@example.com', age: 36 },\n    { id: '2', name: 'Grace Hopper', email: 'grace@example.com', age: 45 },\n    { id: '3', name: 'Alan Turing', email: 'alan@example.com', age: 41 },\n];\n\nexport const personColumns: DataTableColumn<Person>[] = [\n    { accessorKey: 'name', header: 'Name' },\n    { accessorKey: 'email', header: 'Email' },\n    { accessorKey: 'age', header: 'Age', meta: { align: 'end' } },\n];\n\nexport type HarnessOptions = Partial<UseDataTableOptions<Person>>;\n\ntype HarnessProps = {\n    options?: HarnessOptions;\n    children: (table: Table<Person>) => ReactNode;\n};\n\nfunction TableHarness({ options, children }: HarnessProps) {\n    const table = useDataTable<Person>({\n        data: people,\n        columns: personColumns,\n        getRowId: (person) => person.id,\n        ...options,\n    });\n\n    return children(table);\n}\n\n/** Renders whatever a test needs around one live table instance. */\nexport function renderWithTable(\n    children: (table: Table<Person>) => ReactNode,\n    options?: HarnessOptions,\n) {\n    const user = userEvent.setup();\n\n    const result = render(\n        <TableHarness options={options}>{children}</TableHarness>,\n    );\n\n    return { user, ...result };\n}\n\n/** The common case: the component under test is the table itself. */\nexport function renderDataTable(\n    props?: DataTableBaseProps<Person>,\n    options?: HarnessOptions,\n) {\n    return renderWithTable(\n        (table) => <DataTable table={table} {...props} />,\n        options,\n    );\n}\n\nfunction textOf(element: HTMLElement): string {\n    return element.textContent?.trim() ?? '';\n}\n\nexport function headerTexts(): string[] {\n    return screen.getAllByRole('columnheader').map(textOf);\n}\n\nexport function bodyRows(): HTMLElement[] {\n    // The head is the first rowgroup, the body the second.\n    const [, body] = screen.getAllByRole('rowgroup');\n\n    return within(body).queryAllByRole('row');\n}\n\nexport function rowTexts(): string[][] {\n    return bodyRows().map((row) =>\n        within(row).getAllByRole('cell').map(textOf),\n    );\n}\n\nexport function columnTexts(index: number): string[] {\n    return rowTexts().map((cells) => cells[index] ?? '');\n}\n",
+      "type": "registry:file",
+      "target": "~/resources/js/test/table-harness.tsx"
+    }
+  ],
+  "type": "registry:item"
+}
