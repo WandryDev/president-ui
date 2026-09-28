@@ -16,6 +16,8 @@ import { cn } from '@/lib/utils';
 const DEFAULT_ACCEPT = 'image/*';
 const DEFAULT_MAX_SIZE = 8 * 1024 * 1024;
 
+export type MediaItem = File | string;
+
 export type MediaFieldProps = FormFieldBaseProps & {
     accept?: string;
     maxSize?: number;
@@ -27,26 +29,97 @@ function isImage(file: File): boolean {
     return file.type.startsWith('image/');
 }
 
+function matchesAccept(file: File, accept: string): boolean {
+    const patterns = accept
+        .split(',')
+        .map((pattern) => pattern.trim().toLowerCase())
+        .filter(Boolean);
+
+    if (patterns.length === 0) {
+        return true;
+    }
+
+    const type = file.type.toLowerCase();
+    const name = file.name.toLowerCase();
+
+    return patterns.some((pattern) => {
+        if (pattern.startsWith('.')) {
+            return name.endsWith(pattern);
+        }
+
+        if (pattern.endsWith('/*')) {
+            return type.startsWith(pattern.slice(0, -1));
+        }
+
+        return type === pattern;
+    });
+}
+
+function itemName(item: MediaItem): string {
+    if (typeof item !== 'string') {
+        return item.name;
+    }
+
+    const path = item.split(/[?#]/)[0];
+    const name = path.slice(path.lastIndexOf('/') + 1);
+
+    try {
+        return decodeURIComponent(name) || item;
+    } catch {
+        return name || item;
+    }
+}
+
+function itemKey(item: MediaItem): string {
+    return typeof item === 'string'
+        ? item
+        : `${item.name}-${item.size}-${item.lastModified}`;
+}
+
+function uniqueKeys(items: MediaItem[]): string[] {
+    const seen = new Map<string, number>();
+
+    return items.map((item) => {
+        const key = itemKey(item);
+        const count = seen.get(key) ?? 0;
+
+        seen.set(key, count + 1);
+
+        return count === 0 ? key : `${key}#${count}`;
+    });
+}
+
 function formatSize(bytes: number): string {
     return bytes >= 1024 * 1024
         ? `${(bytes / 1024 / 1024).toFixed(1)} МБ`
         : `${Math.round(bytes / 1024)} КБ`;
 }
 
-function usePreviews(files: File[]): string[] {
+function usePreviews(items: MediaItem[]): string[] {
     const [previews, setPreviews] = useState<string[]>([]);
 
     useEffect(() => {
-        const urls = files.map((file) => URL.createObjectURL(file));
+        const created: string[] = [];
+        const urls = items.map((item) => {
+            if (typeof item === 'string') {
+                return item;
+            }
+
+            const url = URL.createObjectURL(item);
+
+            created.push(url);
+
+            return url;
+        });
 
         setPreviews(urls);
 
         return () => {
-            for (const url of urls) {
+            for (const url of created) {
                 URL.revokeObjectURL(url);
             }
         };
-    }, [files]);
+    }, [items]);
 
     return previews;
 }
@@ -60,22 +133,25 @@ function MediaControl({
     coverLabel,
     inputId,
     describedBy,
+    ariaLabel,
     invalid,
 }: {
-    files: File[];
-    onChange: (files: File[]) => void;
+    files: MediaItem[];
+    onChange: (files: MediaItem[]) => void;
     accept: string;
     maxSize: number;
     maxFiles?: number;
     coverLabel: string;
     inputId: string;
     describedBy?: string;
+    ariaLabel?: string;
     invalid?: boolean;
 }): ReactElement {
     const input = useRef<HTMLInputElement>(null);
     const [dragging, setDragging] = useState(false);
     const [rejected, setRejected] = useState<string[]>([]);
     const previews = usePreviews(files);
+    const keys = uniqueKeys(files);
     const rejectedId = useId();
 
     const accepted = (incoming: File[]): File[] => {
@@ -84,6 +160,12 @@ function MediaControl({
         const kept = incoming.filter((file) => {
             if (!isImage(file)) {
                 problems.push(`${file.name} — не изображение`);
+
+                return false;
+            }
+
+            if (!matchesAccept(file, accept)) {
+                problems.push(`${file.name} — неподходящий формат`);
 
                 return false;
             }
@@ -162,10 +244,11 @@ function MediaControl({
                             rejected.length > 0 ? rejectedId : describedBy
                         }
                         aria-invalid={invalid}
+                        aria-label={ariaLabel}
                         className="sr-only"
                         disabled={full}
                         id={inputId}
-                        multiple
+                        multiple={maxFiles !== 1}
                         onChange={handlePick}
                         ref={input}
                         type="file"
@@ -194,13 +277,13 @@ function MediaControl({
                     <AttachmentGroup className="min-w-0 flex-1 py-0">
                         {files.map((file, index) => (
                             <Attachment
-                                key={`${file.name}-${file.size}-${file.lastModified}`}
+                                key={keys[index]}
                                 orientation="vertical"
                             >
                                 <AttachmentMedia variant="image">
                                     {previews[index] ? (
                                         <img
-                                            alt={file.name}
+                                            alt={itemName(file)}
                                             src={previews[index]}
                                         />
                                     ) : null}
@@ -209,7 +292,7 @@ function MediaControl({
                                 <AttachmentActions>
                                     {index === 0 ? null : (
                                         <AttachmentAction
-                                            aria-label={`Сделать обложкой: ${file.name}`}
+                                            aria-label={`Сделать обложкой: ${itemName(file)}`}
                                             onClick={() => makeCover(index)}
                                             type="button"
                                         >
@@ -218,7 +301,7 @@ function MediaControl({
                                     )}
 
                                     <AttachmentAction
-                                        aria-label={`Удалить ${file.name}`}
+                                        aria-label={`Удалить ${itemName(file)}`}
                                         onClick={() => remove(index)}
                                         type="button"
                                     >
@@ -268,6 +351,7 @@ export function MediaField({
                 <MediaControl
                     accept={accept}
                     coverLabel={coverLabel}
+                    ariaLabel={aria['aria-label']}
                     describedBy={aria['aria-describedby']}
                     files={Array.isArray(field.value) ? field.value : []}
                     inputId={aria.id}
