@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "plan-card",
+  "title": "Plan Card",
+  "description": "A pricing plan: name, tagline, price, features and a slot for its action.",
+  "dependencies": [
+    "lucide-react@^0.475.0"
+  ],
+  "registryDependencies": [
+    "@president/card",
+    "@president/utils"
+  ],
+  "files": [
+    {
+      "path": "resources/js/components/common/plan-card.tsx",
+      "content": "import { Check } from 'lucide-react';\nimport type { ReactElement, ReactNode } from 'react';\nimport { Card } from '@/components/ui/card';\nimport { cn } from '@/lib/utils';\n\nexport type PlanCardProps = {\n    name: ReactNode;\n    tagline?: ReactNode;\n    price: ReactNode;\n    /** Follows the price on its baseline: \"₴ в месяц\", \"per seat\". */\n    period?: ReactNode;\n    features?: string[];\n    /** Prefix for `-name` and `-tagline` ids, so a control can be labelled by them. */\n    id?: string;\n    /** Sits on the name row: a status badge, or the radio that selects the plan. */\n    indicator?: ReactNode;\n    /** Pinned to the bottom so buttons line up across cards. */\n    action?: ReactNode;\n    className?: string;\n    /** Lets the card become a `<label>` when the whole surface selects a plan. */\n    render?: ReactElement<Record<string, unknown>>;\n};\n\n/** Presents a plan; what the card does with it is up to the caller. */\nexport function PlanCard({\n    name,\n    tagline,\n    price,\n    period,\n    features = [],\n    id,\n    indicator,\n    action,\n    className,\n    render,\n}: PlanCardProps): ReactElement {\n    return (\n        <Card\n            className={cn('justify-between gap-6 p-4', className)}\n            data-slot=\"plan-card\"\n            render={render}\n        >\n            <div className=\"space-y-4\">\n                <div className=\"space-y-1\">\n                    <div className=\"flex items-center justify-between gap-2\">\n                        <h3\n                            className=\"font-medium text-base sm:text-sm\"\n                            id={id ? `${id}-name` : undefined}\n                        >\n                            {name}\n                        </h3>\n\n                        {indicator}\n                    </div>\n\n                    {tagline ? (\n                        <p\n                            className=\"text-pretty text-base text-muted-foreground sm:text-sm\"\n                            id={id ? `${id}-tagline` : undefined}\n                        >\n                            {tagline}\n                        </p>\n                    ) : null}\n                </div>\n\n                <div className=\"flex items-baseline gap-1.5\">\n                    <div className=\"whitespace-nowrap font-semibold text-2xl tabular-nums tracking-tight\">\n                        {price}\n                    </div>\n\n                    {period ? (\n                        <div className=\"text-base text-muted-foreground sm:text-sm\">\n                            {period}\n                        </div>\n                    ) : null}\n                </div>\n\n                {features.length > 0 ? (\n                    // biome-ignore lint/a11y/noRedundantRoles: preflight drops the marker, and Safari drops list semantics with it\n                    <ul className=\"space-y-2\" role=\"list\">\n                        {features.map((feature) => (\n                            <li\n                                className=\"flex gap-2 text-base sm:text-sm\"\n                                key={feature}\n                            >\n                                <Check className=\"size-4 h-lh shrink-0 text-muted-foreground\" />\n                                {feature}\n                            </li>\n                        ))}\n                    </ul>\n                ) : null}\n            </div>\n\n            {action}\n        </Card>\n    );\n}\n",
+      "type": "registry:component",
+      "target": "~/resources/js/components/common/plan-card.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

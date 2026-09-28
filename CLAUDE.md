@@ -17,7 +17,7 @@ Shared UI for `president-saas` and `president-saas-platform`, distributed as a [
 
 - `components/ui/<name>.tsx` → item `<name>` (`registry:ui`). `ui/form.tsx` is published as `ui-form`, because `form` is the form module.
 - `components/form/*` → `form`, `components/data-table/*` → `data-table`. One item each; their `index.ts` re-exports everything. `*.test.tsx` files are left out.
-- `common/alert-error.tsx` → `alert-error`, `lib/utils.ts` → `utils`, `lib/segmented-control.ts` → `segmented-control`, `hooks/use-media-query.ts` → `use-media-query`.
+- `common/alert-error.tsx` → `alert-error`, `common/plan-card.tsx` → `plan-card`, `lib/utils.ts` → `utils`, `lib/segmented-control.ts` → `segmented-control`, `hooks/use-media-query.ts` → `use-media-query`.
 - `test/{setup,inertia-page,form-harness,table-harness}` → `test-utils`.
 - `theme` (`resources/css/theme.css`), `font-sans` (`font-sans.css`, Onest) and `font-mono` (`font-mono.css`, Geist Mono) are declared statically in `scripts/build-registry.ts`. `theme.css` imports both font files. They are plain items, not `registry:font`: outside Next the CLI writes fonts into `app.css` and applies every font variable to `<html>` at once.
 - Every file has an explicit `target: "~/<path>"`. `utils` ships as `registry:file`, because the CLI never overwrites an existing `lib/utils.ts` of type `registry:lib` in a Laravel project, even with `--overwrite`.

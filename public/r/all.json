@@ -60,6 +60,7 @@
     "@president/otp-field",
     "@president/pagination",
     "@president/placeholder-pattern",
+    "@president/plan-card",
     "@president/popover",
     "@president/preview-card",
     "@president/progress",

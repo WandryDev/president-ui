@@ -1278,6 +1278,26 @@
             ]
         },
         {
+            "name": "plan-card",
+            "type": "registry:component",
+            "title": "Plan Card",
+            "description": "A pricing plan: name, tagline, price, features and a slot for its action.",
+            "dependencies": [
+                "lucide-react@^0.475.0"
+            ],
+            "registryDependencies": [
+                "@president/card",
+                "@president/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/common/plan-card.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/common/plan-card.tsx"
+                }
+            ]
+        },
+        {
             "name": "popover",
             "type": "registry:ui",
             "title": "Popover",
@@ -1923,6 +1943,7 @@
                 "@president/otp-field",
                 "@president/pagination",
                 "@president/placeholder-pattern",
+                "@president/plan-card",
                 "@president/popover",
                 "@president/preview-card",
                 "@president/progress",

@@ -168,6 +168,15 @@ function sourceItems(): SourceItem[] {
             files: [`${JS}/components/common/alert-error.tsx`],
         },
         {
+            name: 'plan-card',
+            type: 'registry:component',
+            fileType: 'registry:component',
+            title: 'Plan Card',
+            description:
+                'A pricing plan: name, tagline, price, features and a slot for its action.',
+            files: [`${JS}/components/common/plan-card.tsx`],
+        },
+        {
             name: 'utils',
             type: 'registry:lib',
             // As `registry:lib`, the CLI never overwrites an existing
