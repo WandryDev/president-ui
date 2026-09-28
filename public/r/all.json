@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "all",
   "title": "All",
-  "description": "Every item except test-utils. One command to sync an app with the registry.",
+  "description": "Every item except test-utils and the editor. One command to sync an app with the registry.",
   "registryDependencies": [
     "@president/accordion",
     "@president/alert",

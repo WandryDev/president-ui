@@ -2,6 +2,13 @@
 
 Apps pin a tag in the `@president` URL of their `components.json`. Every release lists what changed per item; anything that breaks an existing call site goes under **Breaking**.
 
+## Unreleased
+
+- `editor-static`: `EditorStatic`, the read-only renderer for editor documents, with `BaseEditorKit`, `EditorValue`, `EMPTY_EDITOR_VALUE`, `isEditorValueEmpty` and the URL checks `isAllowedLinkUrl` / `isAllowedImageUrl`. Needs no `ui` primitives. Not part of `all`.
+- `editor`: `Editor` and `EditorField` on Plate 53 without AI, comments, suggestions, mentions or font controls — H2–H4, marks, links, lists and to-dos, quotes, callouts, code blocks, dividers, tables and images, with a fixed toolbar, a floating toolbar, a `/` menu, markdown shortcuts and drag handles. Images go in by URL, or through `uploadImage` (with `onUploadError`) when the app passes one. Links and images outside `http`/`https` (`mailto` for links) are refused and stripped from pasted or stored content. Not part of `all`; add `@president/editor` to `ui:sync`.
+- `form`: `MediaField` takes saved images as URL strings next to `File`s (`(File | string)[]`), previews them and removes them like files. A file outside `accept` is now rejected, not only a non-image. `aria-label` now reaches the file input.
+- `test-utils`: `setup.ts` stubs `Range.getBoundingClientRect` and `Range.getClientRects`.
+
 ## v0.0.4
 
 - `plan-card`: `PlanCard`, extracted from the plan tiers of `president-saas` with the tier data turned into props (`name`, `tagline`, `price`, `period`, `features`), so the platform's plan catalogue and the workspace billing page render the same card.

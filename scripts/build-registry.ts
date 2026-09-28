@@ -55,6 +55,25 @@ const UI_NAME_OVERRIDES: Record<string, string> = {
     form: 'ui-form',
 };
 
+/** Opt-in items: an app lists them in its own ui:sync instead of getting them through `all`. */
+const OPT_IN_ITEMS = new Set(['test-utils', 'editor', 'editor-static']);
+
+const EDITOR = `${JS}/components/editor`;
+
+/** The part of the editor a read-only consumer (the landing page) needs. */
+const EDITOR_STATIC_FILES = new Set([
+    'base-editor-kit.tsx',
+    'editor-static.tsx',
+    'editor-url.ts',
+    'editor-value.ts',
+]);
+
+function isEditorStatic(file: string): boolean {
+    const name = basename(file);
+
+    return EDITOR_STATIC_FILES.has(name) || name.endsWith('-static.tsx');
+}
+
 const RESOLVE_EXTENSIONS = ['.ts', '.tsx', '/index.ts', '/index.tsx'];
 
 type FileType =
@@ -158,6 +177,24 @@ function sourceItems(): SourceItem[] {
             description:
                 'TanStack table with toolbar, search, filters, pagination and editable cells.',
             files: listSources(`${JS}/components/data-table`),
+        },
+        {
+            name: 'editor-static',
+            type: 'registry:component',
+            fileType: 'registry:component',
+            title: 'Editor Static',
+            description:
+                'Read-only renderer for editor documents, with the same node styles as the editor.',
+            files: listSources(EDITOR).filter(isEditorStatic),
+        },
+        {
+            name: 'editor',
+            type: 'registry:component',
+            fileType: 'registry:component',
+            title: 'Editor',
+            description:
+                'Rich text editor on Plate with toolbars, slash menu, drag and drop and a form field.',
+            files: listSources(EDITOR).filter((file) => !isEditorStatic(file)),
         },
         {
             name: 'alert-error',
@@ -445,10 +482,10 @@ function build(): RegistryItem[] {
         type: 'registry:item',
         title: 'All',
         description:
-            'Every item except test-utils. One command to sync an app with the registry.',
+            'Every item except test-utils and the editor. One command to sync an app with the registry.',
         registryDependencies: items
             .map((item) => item.name)
-            .filter((name) => name !== 'test-utils'),
+            .filter((name) => !OPT_IN_ITEMS.has(name)),
     };
 
     const names = [...items, all].map((item) => item.name).sort(byName);

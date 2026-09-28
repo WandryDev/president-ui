@@ -641,6 +641,273 @@
             ]
         },
         {
+            "name": "editor",
+            "type": "registry:component",
+            "title": "Editor",
+            "description": "Rich text editor on Plate with toolbars, slash menu, drag and drop and a form field.",
+            "dependencies": [
+                "@platejs/basic-nodes@53.0.0",
+                "@platejs/callout@53.0.0",
+                "@platejs/code-block@53.0.0",
+                "@platejs/combobox@53.0.0",
+                "@platejs/dnd@53.3.8",
+                "@platejs/floating@53.0.0",
+                "@platejs/indent@53.0.0",
+                "@platejs/link@53.3.5",
+                "@platejs/list@53.3.13",
+                "@platejs/markdown@53.3.12",
+                "@platejs/media@53.1.4",
+                "@platejs/slash-command@53.0.0",
+                "@platejs/table@53.0.9",
+                "lucide-react@^0.475.0",
+                "platejs@53.3.14",
+                "react-dnd@16.0.1",
+                "react-dnd-html5-backend@16.0.1",
+                "remark-gfm@4.0.1"
+            ],
+            "registryDependencies": [
+                "@president/button",
+                "@president/checkbox",
+                "@president/editor-static",
+                "@president/form",
+                "@president/input",
+                "@president/menu",
+                "@president/popover",
+                "@president/separator",
+                "@president/toggle",
+                "@president/toolbar",
+                "@president/tooltip",
+                "@president/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/editor/block-draggable.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/block-draggable.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/block-list.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/block-list.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/block-menus.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/block-menus.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/blockquote-node.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/blockquote-node.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/callout-node.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/callout-node.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/code-block-node.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/code-block-node.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/code-node.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/code-node.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/editor-field.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/editor-field.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/editor-kit.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/editor-kit.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/editor-toolbar.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/editor-toolbar.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/editor-transforms.ts",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/editor-transforms.ts"
+                },
+                {
+                    "path": "resources/js/components/editor/editor-upload.ts",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/editor-upload.ts"
+                },
+                {
+                    "path": "resources/js/components/editor/editor.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/editor.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/fixed-toolbar.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/fixed-toolbar.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/floating-toolbar.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/floating-toolbar.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/heading-node.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/heading-node.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/hr-node.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/hr-node.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/image-button.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/image-button.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/image-node.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/image-node.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/link-node.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/link-node.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/link-toolbar.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/link-toolbar.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/paragraph-node.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/paragraph-node.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/slash-node.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/slash-node.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/table-node.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/table-node.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/toolbar-buttons.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/toolbar-buttons.tsx"
+                }
+            ]
+        },
+        {
+            "name": "editor-static",
+            "type": "registry:component",
+            "title": "Editor Static",
+            "description": "Read-only renderer for editor documents, with the same node styles as the editor.",
+            "dependencies": [
+                "@platejs/basic-nodes@53.0.0",
+                "@platejs/callout@53.0.0",
+                "@platejs/code-block@53.0.0",
+                "@platejs/indent@53.0.0",
+                "@platejs/link@53.3.5",
+                "@platejs/list@53.3.13",
+                "@platejs/media@53.1.4",
+                "@platejs/table@53.0.9",
+                "class-variance-authority@^0.7.1",
+                "lowlight@3.3.0",
+                "lucide-react@^0.475.0",
+                "platejs@53.3.14"
+            ],
+            "registryDependencies": [
+                "@president/utils"
+            ],
+            "files": [
+                {
+                    "path": "resources/js/components/editor/base-editor-kit.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/base-editor-kit.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/block-list-static.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/block-list-static.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/blockquote-node-static.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/blockquote-node-static.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/callout-node-static.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/callout-node-static.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/code-block-node-static.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/code-block-node-static.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/code-node-static.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/code-node-static.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/editor-static.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/editor-static.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/editor-url.ts",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/editor-url.ts"
+                },
+                {
+                    "path": "resources/js/components/editor/editor-value.ts",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/editor-value.ts"
+                },
+                {
+                    "path": "resources/js/components/editor/heading-node-static.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/heading-node-static.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/hr-node-static.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/hr-node-static.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/image-node-static.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/image-node-static.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/link-node-static.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/link-node-static.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/paragraph-node-static.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/paragraph-node-static.tsx"
+                },
+                {
+                    "path": "resources/js/components/editor/table-node-static.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/editor/table-node-static.tsx"
+                }
+            ]
+        },
+        {
             "name": "empty",
             "type": "registry:ui",
             "title": "Empty",
@@ -1885,7 +2152,7 @@
             "name": "all",
             "type": "registry:item",
             "title": "All",
-            "description": "Every item except test-utils. One command to sync an app with the registry.",
+            "description": "Every item except test-utils and the editor. One command to sync an app with the registry.",
             "registryDependencies": [
                 "@president/accordion",
                 "@president/alert",

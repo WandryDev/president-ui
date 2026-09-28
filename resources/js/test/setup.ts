@@ -46,6 +46,13 @@ Element.prototype.hasPointerCapture ??= function hasPointerCapture() {
 Element.prototype.setPointerCapture ??= function setPointerCapture() {};
 Element.prototype.releasePointerCapture ??= function releasePointerCapture() {};
 
+Range.prototype.getBoundingClientRect ??= function getBoundingClientRect() {
+    return new DOMRect();
+};
+Range.prototype.getClientRects ??= function getClientRects() {
+    return [] as unknown as DOMRectList;
+};
+
 globalThis.matchMedia ??= ((query: string) => ({
     matches: false,
     media: query,

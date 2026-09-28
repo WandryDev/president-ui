@@ -19,9 +19,10 @@ Shared UI for `president-saas` and `president-saas-platform`, distributed as a [
 - `components/form/*` → `form`, `components/data-table/*` → `data-table`. One item each; their `index.ts` re-exports everything. `*.test.tsx` files are left out.
 - `common/alert-error.tsx` → `alert-error`, `common/plan-card.tsx` → `plan-card`, `lib/utils.ts` → `utils`, `lib/segmented-control.ts` → `segmented-control`, `hooks/use-media-query.ts` → `use-media-query`.
 - `test/{setup,inertia-page,form-harness,table-harness}` → `test-utils`.
+- `components/editor/*` ships as two items. `editor-static` holds `editor-static.tsx`, `base-editor-kit.tsx`, `editor-url.ts`, `editor-value.ts` and every `*-static.tsx`; the rest of the folder is `editor`, which depends on `editor-static`, `form` and the `ui` primitives it uses. `editor-static` must not import `components/ui`.
 - `theme` (`resources/css/theme.css`), `font-sans` (`font-sans.css`, Onest) and `font-mono` (`font-mono.css`, Geist Mono) are declared statically in `scripts/build-registry.ts`. `theme.css` imports both font files. They are plain items, not `registry:font`: outside Next the CLI writes fonts into `app.css` and applies every font variable to `<html>` at once.
 - Every file has an explicit `target: "~/<path>"`. `utils` ships as `registry:file`, because the CLI never overwrites an existing `lib/utils.ts` of type `registry:lib` in a Laravel project, even with `--overwrite`.
-- `all` depends on every item except `test-utils`.
+- `all` depends on every item except `test-utils`, `editor` and `editor-static`. Those are opt-in: an app that needs them adds them to its own `ui:sync`.
 
 `dependencies` come from bare imports (`react` and `react-dom` excluded, subpaths collapsed to the package) and carry the range from `package.json`; test tooling (vitest, jsdom, Testing Library) goes to `devDependencies`. `registryDependencies` come from `@/…` imports that land in another item and are written as `@president/<name>`, so the CLI fetches them through the app's namespace — from the same tag as the item that needs them. The build fails on a package missing from `package.json` and on a source file no item ships — a new top-level file needs a catalogue entry in `scripts/build-registry.ts`.
 
@@ -108,6 +109,38 @@ export function TextField({ ...props }: TextFieldProps) {
 - Every field component needs a test covering that it renders and that its value reaches the submitted payload.
 - Every page with a form needs a form-level test in the page folder with a mocked `router`: the expected fields are present, submit sends the right URL and payload, and a 422 response renders the errors.
 - Run with `bun run test`.
+
+# Editor
+
+_Rich text on [Plate](https://platejs.org) without AI or collaboration: blocks, marks, links, lists, tables, callouts, code blocks and images. Documents are Plate JSON (`EditorValue`); nothing is serialised to HTML._
+
+## Installing
+
+The editor is not part of `all`. An app that edits documents adds `@president/editor` to its `ui:sync` (it pulls `editor-static` with it). A read-only consumer — the landing page — installs `@president/editor-static` only, which needs no `ui` primitives.
+
+## Editing
+
+- In a form use `EditorField` like any other field: `<EditorField name="content" label="Текст" />`. The form value is the document array. Validate emptiness with `isEditorValueEmpty` from `editor-value.ts`, not `.min(1)`: an empty editor still holds one blank paragraph (`EMPTY_EDITOR_VALUE`).
+- Outside a form use `<Editor value onChange />`. `value` is taken on mount and re-applied only when it differs in content from what the editor holds, so feeding `onChange` back into `value` is safe.
+- `children` render inside the Plate context. Tests use it to reach the editor instance with `useEditorRef()`.
+- Headings are H2–H4: the page's H1 is the document title, a separate field.
+
+## Images
+
+- Without `uploadImage` an image is inserted by URL only; dropping or pasting a file does nothing.
+- With `uploadImage: (file: File) => Promise<string>` the image popover gets a file picker, and dropped or pasted image files are uploaded and inserted at the returned URL, in order. A relative URL is resolved against the page. The module never posts anything itself.
+- A rejected upload, or a returned URL the editor cannot show, goes to `onUploadError` when the app passes one; the popover also shows it inline.
+- Link URLs must be `http`, `https` or `mailto`; image URLs `http` or `https`. The editor refuses others on input and strips any that arrive by paste or in a stored document (links are unwrapped, images removed), and `EditorStatic` renders neither a `href` nor a `src` that fails the same check.
+
+## Rendering
+
+`<EditorStatic value={document} />` renders a document with the node styles the editor uses (`*-static.tsx` export their class names, and the editable nodes import them), with no toolbars, handles or `contenteditable`.
+
+## Testing
+
+- jsdom has no layout. `test/setup.ts` stubs `Range.getBoundingClientRect` and `getClientRects`, which the floating toolbars read.
+- Drive the editor through its instance (`editor.tf.insertText`, `editor.tf.select`, `editor.tf.insertData`) rather than typing into the `contenteditable`; assert on `editor.children` or on the rendered toolbars and menus.
+- Editor files are compiled with the React Compiler in `vitest.config.ts`, as the apps compile them.
 
 # Data tables
 
