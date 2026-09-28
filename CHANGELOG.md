@@ -2,7 +2,7 @@
 
 Apps pin a tag in the `@president` URL of their `components.json`. Every release lists what changed per item; anything that breaks an existing call site goes under **Breaking**.
 
-## Unreleased
+## v0.0.4
 
 - `plan-card`: `PlanCard`, extracted from the plan tiers of `president-saas` with the tier data turned into props (`name`, `tagline`, `price`, `period`, `features`), so the platform's plan catalogue and the workspace billing page render the same card.
 
