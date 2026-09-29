@@ -115,4 +115,39 @@ describe('DataTableMiddleTruncate', () => {
             expect.objectContaining({ id: '2' }),
         );
     });
+
+    it('leaves the page to scroll by default', () => {
+        const { container } = renderWithTable(
+            (table) => <DataTableMiddleTruncate table={table} />,
+            pinning,
+        );
+
+        expect(
+            container.querySelector('[data-slot="table-container"]')?.className,
+        ).not.toContain('overflow-auto');
+        expect(
+            container.querySelector('[data-slot="table-header"]')?.className,
+        ).not.toContain('sticky');
+    });
+
+    it('scrolls the rows inside the table under a sticky header when filling', () => {
+        const { container } = renderWithTable(
+            (table) => <DataTableMiddleTruncate fill table={table} />,
+            pinning,
+        );
+
+        const scroller = container.querySelector(
+            '[data-slot="table-container"]',
+        );
+
+        expect(scroller?.className).toContain('overflow-auto');
+        expect(
+            container.querySelector('[data-slot="table-header"]')?.className,
+        ).toContain('sticky top-0');
+        expect(
+            scroller?.contains(
+                screen.getByRole('button', { name: 'На следующую страницу' }),
+            ),
+        ).toBe(false);
+    });
 });

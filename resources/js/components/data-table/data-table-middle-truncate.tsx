@@ -57,6 +57,12 @@ export type DataTableMiddleTruncateProps<TData extends RowData> = {
     onRowClick?: (row: Row<TData>) => void;
     pagination?: boolean;
     pageSizeOptions?: number[];
+    /**
+     * Fills the parent's height: the rows scroll inside the table under a
+     * sticky header, and the page controls stay below it. The parent needs a
+     * bounded height.
+     */
+    fill?: boolean;
     className?: string;
 };
 
@@ -143,6 +149,7 @@ export function DataTableMiddleTruncate<TData extends RowData>({
     onRowClick,
     pagination = true,
     pageSizeOptions,
+    fill = false,
     className,
 }: DataTableMiddleTruncateProps<TData>) {
     const [uncontrolledExpanded, setUncontrolledExpanded] =
@@ -323,15 +330,40 @@ export function DataTableMiddleTruncate<TData extends RowData>({
     const expandName = `${expandLabel}: ${middleLabel} (${middle.length})`;
 
     return (
-        <div className={cn('flex flex-col gap-3', className)}>
+        <div
+            className={cn(
+                'flex flex-col gap-3',
+                fill && 'h-full min-h-0',
+                className,
+            )}
+        >
             {toolbar}
 
-            <div className="overflow-hidden rounded-xl border">
+            <div
+                className={cn(
+                    'overflow-hidden rounded-xl border',
+                    fill && 'flex min-h-0 flex-1 flex-col',
+                )}
+            >
                 <Table
-                    className="border-separate border-spacing-0"
+                    className={cn(
+                        'border-separate border-spacing-0',
+                        fill && rows.length === 0 && 'h-full',
+                    )}
                     ref={tableRef}
+                    render={
+                        fill ? (
+                            <div className="h-full overflow-auto overscroll-none" />
+                        ) : undefined
+                    }
                 >
-                    <TableHeader className={headerClassName}>
+                    {/* Above the pinned body cells (z-10), so rows scroll under it. */}
+                    <TableHeader
+                        className={cn(
+                            headerClassName,
+                            fill && 'sticky top-0 z-20',
+                        )}
+                    >
                         {/* The row above the columns only carries the middle's label and
                             its collapse control; folded, the rail is the control. */}
                         {showsMiddle ? (
