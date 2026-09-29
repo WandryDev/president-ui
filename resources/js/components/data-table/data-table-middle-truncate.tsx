@@ -75,6 +75,14 @@ const alignClasses: Record<DataTableAlign, string> = {
 const pinnedCellClassName =
     'sticky z-10 bg-background in-[tr:hover]:bg-[color-mix(in_srgb,var(--background),var(--color-black)_2%)] in-data-[state=selected]:bg-[color-mix(in_srgb,var(--background),var(--color-black)_4%)] dark:in-[tr:hover]:bg-[color-mix(in_srgb,var(--background),var(--color-white)_2%)] dark:in-data-[state=selected]:bg-[color-mix(in_srgb,var(--background),var(--color-white)_4%)]';
 
+/**
+ * `--secondary` is translucent, so pinned header cells painted with it alone
+ * let the scrolled headers show through. The tint is laid over an opaque
+ * background instead; it looks the same as the `DataTable` header.
+ */
+const headerClassName =
+    '[&_th]:bg-background [&_th]:bg-[linear-gradient(var(--secondary),var(--secondary))] [&_tr]:border-b-0';
+
 /** Keeps the label of the middle clear of the edge of the start zone. */
 const MIDDLE_LABEL_INSET = 8;
 
@@ -323,7 +331,7 @@ export function DataTableMiddleTruncate<TData extends RowData>({
                     className="border-separate border-spacing-0"
                     ref={tableRef}
                 >
-                    <TableHeader className="[&_th]:bg-secondary [&_tr]:border-b-0">
+                    <TableHeader className={headerClassName}>
                         <TableRow className="hover:bg-transparent">
                             {start.length > 0 ? (
                                 <TableHead

@@ -69,6 +69,18 @@ describe('DataTableMiddleTruncate', () => {
         ]);
     });
 
+    it('paints the header opaque so pinned cells hide what scrolls under them', () => {
+        renderWithTable(
+            (table) => <DataTableMiddleTruncate table={table} />,
+            pinning,
+        );
+
+        const [head] = screen.getAllByRole('rowgroup');
+
+        expect(head.className).toContain('[&_th]:bg-background');
+        expect(head.className).not.toContain('[&_th]:bg-secondary');
+    });
+
     it('sorts from a pinned header and opens a row on click', async () => {
         const onRowClick = vi.fn();
 
