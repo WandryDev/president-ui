@@ -2,6 +2,10 @@
 
 Apps pin a tag in the `@president` URL of their `components.json`. Every release lists what changed per item; anything that breaks an existing call site goes under **Breaking**.
 
+## v0.0.8
+
+- `data-table`: `DataTableMiddleTruncate` renders the header row above the columns only while the middle is shown. Folded, that row was empty — the rail is the control.
+
 ## v0.0.7
 
 - `data-table`: `DataTableMiddleTruncate` paints its header cells opaque. `--secondary` is translucent, so the pinned start and end headers showed the scrolled middle headers through them.
