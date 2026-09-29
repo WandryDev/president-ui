@@ -2,7 +2,7 @@
 
 Apps pin a tag in the `@president` URL of their `components.json`. Every release lists what changed per item; anything that breaks an existing call site goes under **Breaking**.
 
-## Unreleased
+## v0.0.6
 
 - `data-table`: `DataTableMiddleTruncate`, a table whose middle folds away. Columns pinned left and right (`columnPinning`) stay on screen as the start and the end; the columns between them scroll, and a control in the header row hides them into a narrow rail and brings them back. Controlled with `expanded` / `onExpandedChange` or left to `defaultExpanded`; labels and the rail width are props.
 
