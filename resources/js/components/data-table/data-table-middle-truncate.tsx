@@ -332,55 +332,52 @@ export function DataTableMiddleTruncate<TData extends RowData>({
                     ref={tableRef}
                 >
                     <TableHeader className={headerClassName}>
-                        <TableRow className="hover:bg-transparent">
-                            {start.length > 0 ? (
-                                <TableHead
-                                    className="sticky left-0 z-10 h-9 border-e border-b"
-                                    colSpan={start.length}
-                                />
-                            ) : null}
+                        {/* The row above the columns only carries the middle's label and
+                            its collapse control; folded, the rail is the control. */}
+                        {showsMiddle ? (
+                            <TableRow className="hover:bg-transparent">
+                                {start.length > 0 ? (
+                                    <TableHead
+                                        className="sticky left-0 z-10 h-9 border-e border-b"
+                                        colSpan={start.length}
+                                    />
+                                ) : null}
 
-                            {hasMiddle ? (
                                 <TableHead
                                     className="h-9 border-b"
-                                    colSpan={showsMiddle ? middle.length : 1}
-                                    style={showsRail ? railStyle : undefined}
+                                    colSpan={middle.length}
                                 >
-                                    {showsMiddle ? (
-                                        // The cell spans the whole middle and scrolls away
-                                        // with it; the label inside sticks to the edge of
-                                        // the start zone while any middle column is visible.
-                                        <div
-                                            className="sticky w-fit"
-                                            style={{
-                                                left:
-                                                    offsets.startWidth +
-                                                    MIDDLE_LABEL_INSET,
-                                            }}
+                                    {/* The cell spans the whole middle and scrolls away
+                                        with it; the label inside sticks to the edge of
+                                        the start zone while any middle column is visible. */}
+                                    <div
+                                        className="sticky w-fit"
+                                        style={{
+                                            left:
+                                                offsets.startWidth +
+                                                MIDDLE_LABEL_INSET,
+                                        }}
+                                    >
+                                        <Button
+                                            aria-label={`${collapseLabel}: ${middleLabel}`}
+                                            onClick={() => setExpanded(false)}
+                                            size="xs"
+                                            variant="ghost"
                                         >
-                                            <Button
-                                                aria-label={`${collapseLabel}: ${middleLabel}`}
-                                                onClick={() =>
-                                                    setExpanded(false)
-                                                }
-                                                size="xs"
-                                                variant="ghost"
-                                            >
-                                                <ChevronsRightLeft />
-                                                {middleLabel}
-                                            </Button>
-                                        </div>
-                                    ) : null}
+                                            <ChevronsRightLeft />
+                                            {middleLabel}
+                                        </Button>
+                                    </div>
                                 </TableHead>
-                            ) : null}
 
-                            {end.length > 0 ? (
-                                <TableHead
-                                    className="sticky right-0 z-10 h-9 border-s border-b"
-                                    colSpan={end.length}
-                                />
-                            ) : null}
-                        </TableRow>
+                                {end.length > 0 ? (
+                                    <TableHead
+                                        className="sticky right-0 z-10 h-9 border-s border-b"
+                                        colSpan={end.length}
+                                    />
+                                ) : null}
+                            </TableRow>
+                        ) : null}
 
                         <TableRow className="hover:bg-transparent">
                             {headersOf(start).map(headCell)}

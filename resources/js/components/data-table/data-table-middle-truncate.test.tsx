@@ -16,7 +16,8 @@ describe('DataTableMiddleTruncate', () => {
             pinning,
         );
 
-        expect(headerTexts()).toEqual(['', '', '', 'Name', '', 'Age']);
+        expect(headerTexts()).toEqual(['Name', '', 'Age']);
+        expect(screen.getAllByRole('row')).toHaveLength(1 + 3);
         expect(
             screen.getByRole('button', {
                 name: 'Show columns: Contacts (1)',
@@ -45,6 +46,14 @@ describe('DataTableMiddleTruncate', () => {
 
         expect(screen.getByText('ada@example.com')).toBeInTheDocument();
         expect(onExpandedChange).toHaveBeenLastCalledWith(true);
+        expect(headerTexts()).toEqual([
+            '',
+            'Contacts',
+            '',
+            'Name',
+            'Email',
+            'Age',
+        ]);
 
         await user.click(
             screen.getByRole('button', { name: 'Hide columns: Contacts' }),
