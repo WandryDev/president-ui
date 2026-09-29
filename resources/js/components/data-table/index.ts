@@ -12,6 +12,8 @@ export type {
     DataTableFiltersProps,
 } from './data-table-filters';
 export { DataTableFilters } from './data-table-filters';
+export type { DataTableMiddleTruncateProps } from './data-table-middle-truncate';
+export { DataTableMiddleTruncate } from './data-table-middle-truncate';
 export type { DataTablePaginationProps } from './data-table-pagination';
 export {
     DataTablePagination,

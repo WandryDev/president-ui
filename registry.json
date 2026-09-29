@@ -499,6 +499,11 @@
                     "target": "~/resources/js/components/data-table/data-table-filters.tsx"
                 },
                 {
+                    "path": "resources/js/components/data-table/data-table-middle-truncate.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/data-table/data-table-middle-truncate.tsx"
+                },
+                {
                     "path": "resources/js/components/data-table/data-table-pagination.tsx",
                     "type": "registry:component",
                     "target": "~/resources/js/components/data-table/data-table-pagination.tsx"
