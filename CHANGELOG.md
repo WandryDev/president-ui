@@ -2,6 +2,10 @@
 
 Apps pin a tag in the `@president` URL of their `components.json`. Every release lists what changed per item; anything that breaks an existing call site goes under **Breaking**.
 
+## v0.0.10
+
+- `form`: `ComboboxField`, a searchable choice of one value or several (`multiple`, as chips). Options carry an optional `description`; `onSearchChange` hands the query to the caller for server-side search, and `selectedOptions` labels chosen values that are no longer offered.
+
 ## v0.0.9
 
 - `data-table`: `DataTableMiddleTruncate` takes `fill`, as `DataTable` does. The table then fills its parent's height, the rows scroll inside it under a sticky header, and the page controls stay below.
