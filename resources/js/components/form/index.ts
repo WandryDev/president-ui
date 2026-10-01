@@ -1,5 +1,10 @@
 export type { CheckboxFieldProps } from './checkbox-field';
 export { CheckboxField } from './checkbox-field';
+export type {
+    ComboboxFieldOption,
+    ComboboxFieldProps,
+} from './combobox-field';
+export { ComboboxField } from './combobox-field';
 export type { DateFieldProps } from './date-field';
 export { DateField } from './date-field';
 export type { FormProps } from './form';

@@ -100,6 +100,7 @@ export function TextField({ ...props }: TextFieldProps) {
 
 - Compose shadcn primitives from `@/components/ui`. Use `InputGroup` when the control needs an addon or an inline button, as `PasswordField` does for its visibility toggle.
 - Fields that offer a choice (`SelectField`, `RadioGroupField`) take an `options` prop of `{ value, label, disabled? }`. Accept `children` as an escape hatch for groups, icons, or custom rows, and render them instead of `options` when present.
+- `ComboboxField` is the searchable choice: `options` of `{ value, label, description?, disabled? }`, one value (`string`, `''` when empty) or `multiple` (`string[]`, shown as chips). It filters by `label` itself; pass `onSearchChange` to fetch options from the server instead, and `selectedOptions` so values outside the current `options` (a deprecated record, a page of results that moved on) keep their label without being offered again.
 - Store a serialisable primitive in form state, never a rich object. `DateField` holds a `'yyyy-MM-dd'` string and converts to `Date` only inside `Calendar`, so the browser timezone cannot shift the value on the way to Laravel.
 - `name` is typed as `string`. `FormField` validates it against the schema in dev and throws a named error listing the available paths.
 - Export by name and add it to `index.ts`.
