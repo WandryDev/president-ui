@@ -2,6 +2,10 @@
 
 Apps pin a tag in the `@president` URL of their `components.json`. Every release lists what changed per item; anything that breaks an existing call site goes under **Breaking**.
 
+## Unreleased
+
+- `form`: `TranslatableField`, one text in several languages. A tab per locale sits on the label's row; each locale is its own form path (`locales` of `{ name, label }`, e.g. `title_ua`, `title_en`), so the payload stays flat. The fieldset carries the label, every input is named by its locale. `setFocus` on a locale opens its tab. Panels stay mounted: when a submission or a 422 rejects a locale behind another tab, the field opens it and focuses the input, unless focus already went to an earlier invalid field; a rejected tab is marked with a dot. `defaultLocale` picks the tab shown first, input props (`autoComplete`, `placeholder`, …) reach every locale.
+
 ## v0.0.11
 
 - `form`: `PhoneField`, a phone number typed against the mask of its country. The country is picked from a searchable list with flags (by name or by calling code), or follows a number typed with `+`. The form value is the number in E.164 (`+380671234567`), `''` while empty; a stored number is shown in the national format of its country. `defaultCountry` sets the country for a number typed without `+`, `countries` limits the list, `labels` replaces the Russian country names. `PhoneInput` is the same control without the field, for a `FormField` that composes more than a label around it; its children render inside the input group after the number. Both are imported from their own files (`@/components/form/phone-field`, `@/components/form/phone-input`), not from the module index, so pages without a phone do not load the flags and the number metadata. Adds the `react-phone-number-input` dependency.

@@ -1026,6 +1026,7 @@
                 "@president/checkbox",
                 "@president/combobox",
                 "@president/field",
+                "@president/fieldset",
                 "@president/input",
                 "@president/input-group",
                 "@president/input-otp",
@@ -1035,6 +1036,7 @@
                 "@president/select",
                 "@president/slider",
                 "@president/switch",
+                "@president/tabs",
                 "@president/textarea",
                 "@president/utils"
             ],
@@ -1133,6 +1135,11 @@
                     "path": "resources/js/components/form/textarea-field.tsx",
                     "type": "registry:component",
                     "target": "~/resources/js/components/form/textarea-field.tsx"
+                },
+                {
+                    "path": "resources/js/components/form/translatable-field.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/form/translatable-field.tsx"
                 },
                 {
                     "path": "resources/js/components/form/types.ts",

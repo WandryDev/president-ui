@@ -30,6 +30,11 @@ export { TextField } from './text-field';
 export type { TextareaFieldProps } from './textarea-field';
 export { TextareaField } from './textarea-field';
 export type {
+    TranslatableFieldLocale,
+    TranslatableFieldProps,
+} from './translatable-field';
+export { TranslatableField } from './translatable-field';
+export type {
     FieldControlProps,
     FieldOption,
     FieldOrientation,
