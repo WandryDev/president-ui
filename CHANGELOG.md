@@ -2,7 +2,7 @@
 
 Apps pin a tag in the `@president` URL of their `components.json`. Every release lists what changed per item; anything that breaks an existing call site goes under **Breaking**.
 
-## Unreleased
+## v0.0.12
 
 - `form`: `TranslatableField`, one text in several languages. A tab per locale sits on the label's row; each locale is its own form path (`locales` of `{ name, label }`, e.g. `title_ua`, `title_en`), so the payload stays flat. The fieldset carries the label, every input is named by its locale. `setFocus` on a locale opens its tab. Panels stay mounted: when a submission or a 422 rejects a locale behind another tab, the field opens it and focuses the input, unless focus already went to an earlier invalid field; a rejected tab is marked with a dot. `defaultLocale` picks the tab shown first, input props (`autoComplete`, `placeholder`, …) reach every locale.
 
