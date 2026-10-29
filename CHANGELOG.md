@@ -2,7 +2,7 @@
 
 Apps pin a tag in the `@president` URL of their `components.json`. Every release lists what changed per item; anything that breaks an existing call site goes under **Breaking**.
 
-## Unreleased
+## v0.0.13
 
 - `form`: `MediaField` reorders and shows documents. `reorderable` adds move earlier / later buttons; `cover` (on by default for images) can be turned off. Saved items may be objects, read through `getKey`, `getPreviewUrl`, `getName`, `getSize` and `getHref` (defaults: `id`, `url`, `name`, `size`), so `{ id, thumb_url }` or `{ id, name, size, url }` sit next to new `File`s. `variant="file"` lists rows with an icon, the name (a download link for a saved item), the size and a remove button, for PDF and Word documents; `dropzoneSize` picks the tile or the wide block. The file input now takes the field's ref and blur, a file picked twice is added once, and files over `maxFiles` are named in the error list instead of dropped silently. Sizes read «8 МБ» instead of «8.0 МБ».
 - `form`: `Dropzone`, the drop area of `MediaField` on its own (`onFiles`, `accept`, `multiple`, `size`), and `formatFileSize` («840 КБ», «1,5 МБ»).
