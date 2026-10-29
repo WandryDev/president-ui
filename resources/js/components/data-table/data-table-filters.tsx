@@ -1,10 +1,9 @@
 import type { RowData, Table as TableInstance } from '@tanstack/react-table';
-import { X } from 'lucide-react';
-import type { ReactElement } from 'react';
-import { Button } from '@/components/ui/button';
+import type { ReactElement, ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 import type { DataTableFilterOption } from './data-table-faceted-filter';
 import { DataTableFacetedFilter } from './data-table-faceted-filter';
+import { DataTableResetButton } from './data-table-reset-button';
 
 export type DataTableFilterDef = {
     columnId: string;
@@ -17,6 +16,16 @@ export type DataTableFiltersProps<TData extends RowData> = {
     filters: DataTableFilterDef[];
     label?: string;
     resetLabel?: string;
+    /**
+     * Whether to offer the reset. Defaults to whether any column filter is
+     * set; a server-driven table that also filters by search or dates passes
+     * its own answer.
+     */
+    isFiltered?: boolean;
+    /** Replaces clearing the column filters, e.g. a visit without the query. */
+    onReset?: () => void;
+    /** More filters after the declared ones, e.g. a date range. */
+    children?: ReactNode;
     className?: string;
 };
 
@@ -25,9 +34,13 @@ export function DataTableFilters<TData extends RowData>({
     filters,
     label = 'Фильтры',
     resetLabel = 'Сбросить',
+    isFiltered: isFilteredOverride,
+    onReset,
+    children,
     className,
 }: DataTableFiltersProps<TData>): ReactElement {
-    const isFiltered = table.getState().columnFilters.length > 0;
+    const isFiltered =
+        isFilteredOverride ?? table.getState().columnFilters.length > 0;
 
     return (
         // biome-ignore lint/a11y/useSemanticElements: a fieldset brings legend semantics and min-content sizing to a toolbar row
@@ -53,16 +66,13 @@ export function DataTableFilters<TData extends RowData>({
                 );
             })}
 
+            {children}
+
             {isFiltered ? (
-                <Button
-                    onClick={() => table.resetColumnFilters()}
-                    size="sm"
-                    type="button"
-                    variant="ghost"
-                >
-                    {resetLabel}
-                    <X />
-                </Button>
+                <DataTableResetButton
+                    label={resetLabel}
+                    onReset={onReset ?? (() => table.resetColumnFilters())}
+                />
             ) : null}
         </div>
     );

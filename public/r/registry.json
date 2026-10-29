@@ -466,20 +466,26 @@
             "description": "TanStack table with toolbar, search, filters, pagination and editable cells.",
             "dependencies": [
                 "@tanstack/react-table@^8.21.3",
+                "date-fns@^4.4.0",
                 "lucide-react@^0.475.0"
             ],
             "registryDependencies": [
                 "@president/badge",
                 "@president/button",
+                "@president/calendar",
                 "@president/checkbox",
+                "@president/drawer",
                 "@president/dropdown-menu",
                 "@president/empty",
                 "@president/input",
                 "@president/input-group",
+                "@president/label",
                 "@president/native-select",
+                "@president/popover",
                 "@president/separator",
                 "@president/skeleton",
                 "@president/table",
+                "@president/toggle-group",
                 "@president/utils"
             ],
             "files": [
@@ -487,6 +493,11 @@
                     "path": "resources/js/components/data-table/data-table-column-header.tsx",
                     "type": "registry:component",
                     "target": "~/resources/js/components/data-table/data-table-column-header.tsx"
+                },
+                {
+                    "path": "resources/js/components/data-table/data-table-date-range-filter.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/data-table/data-table-date-range-filter.tsx"
                 },
                 {
                     "path": "resources/js/components/data-table/data-table-faceted-filter.tsx",
@@ -509,9 +520,24 @@
                     "target": "~/resources/js/components/data-table/data-table-pagination.tsx"
                 },
                 {
+                    "path": "resources/js/components/data-table/data-table-reset-button.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/data-table/data-table-reset-button.tsx"
+                },
+                {
+                    "path": "resources/js/components/data-table/data-table-row-actions.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/data-table/data-table-row-actions.tsx"
+                },
+                {
                     "path": "resources/js/components/data-table/data-table-search.tsx",
                     "type": "registry:component",
                     "target": "~/resources/js/components/data-table/data-table-search.tsx"
+                },
+                {
+                    "path": "resources/js/components/data-table/data-table-settings.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/data-table/data-table-settings.tsx"
                 },
                 {
                     "path": "resources/js/components/data-table/data-table-toolbar.tsx",
@@ -537,6 +563,11 @@
                     "path": "resources/js/components/data-table/editable-cells.tsx",
                     "type": "registry:component",
                     "target": "~/resources/js/components/data-table/editable-cells.tsx"
+                },
+                {
+                    "path": "resources/js/components/data-table/faceted-filter.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/data-table/faceted-filter.tsx"
                 },
                 {
                     "path": "resources/js/components/data-table/filter-fns.ts",
@@ -1031,6 +1062,7 @@
                 "@president/input-group",
                 "@president/input-otp",
                 "@president/label",
+                "@president/number-field",
                 "@president/popover",
                 "@president/radio-group",
                 "@president/select",
@@ -1041,6 +1073,11 @@
                 "@president/utils"
             ],
             "files": [
+                {
+                    "path": "resources/js/components/form/async-combobox-field.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/form/async-combobox-field.tsx"
+                },
                 {
                     "path": "resources/js/components/form/checkbox-field.tsx",
                     "type": "registry:component",
@@ -1057,9 +1094,19 @@
                     "target": "~/resources/js/components/form/date-field.tsx"
                 },
                 {
+                    "path": "resources/js/components/form/dropzone.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/form/dropzone.tsx"
+                },
+                {
                     "path": "resources/js/components/form/field-paths.ts",
                     "type": "registry:component",
                     "target": "~/resources/js/components/form/field-paths.ts"
+                },
+                {
+                    "path": "resources/js/components/form/form-actions.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/form/form-actions.tsx"
                 },
                 {
                     "path": "resources/js/components/form/form-context.ts",
@@ -1077,6 +1124,11 @@
                     "target": "~/resources/js/components/form/form.tsx"
                 },
                 {
+                    "path": "resources/js/components/form/format-file-size.ts",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/form/format-file-size.ts"
+                },
+                {
                     "path": "resources/js/components/form/index.ts",
                     "type": "registry:component",
                     "target": "~/resources/js/components/form/index.ts"
@@ -1085,6 +1137,16 @@
                     "path": "resources/js/components/form/media-field.tsx",
                     "type": "registry:component",
                     "target": "~/resources/js/components/form/media-field.tsx"
+                },
+                {
+                    "path": "resources/js/components/form/money-field.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/form/money-field.tsx"
+                },
+                {
+                    "path": "resources/js/components/form/number-field.tsx",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/form/number-field.tsx"
                 },
                 {
                     "path": "resources/js/components/form/otp-field.tsx",
@@ -1145,6 +1207,11 @@
                     "path": "resources/js/components/form/types.ts",
                     "type": "registry:component",
                     "target": "~/resources/js/components/form/types.ts"
+                },
+                {
+                    "path": "resources/js/components/form/use-async-options.ts",
+                    "type": "registry:component",
+                    "target": "~/resources/js/components/form/use-async-options.ts"
                 },
                 {
                     "path": "resources/js/components/form/use-inertia-form.ts",

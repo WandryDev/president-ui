@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import type { ComboboxPrimitive } from '@/components/ui/combobox';
 import {
     Combobox,
     ComboboxChip,
@@ -21,13 +22,21 @@ export type ComboboxFieldOption = {
     disabled?: boolean;
 };
 
+/** Why the typed text changed: `input-change` is typing, `item-press` is the label of a picked option. */
+export type ComboboxFieldSearchDetails =
+    ComboboxPrimitive.Root.ChangeEventDetails;
+
 export type ComboboxFieldProps = FormFieldBaseProps & {
     options: ComboboxFieldOption[];
     selectedOptions?: ComboboxFieldOption[];
     multiple?: boolean;
     placeholder?: string;
     emptyText?: ReactNode;
-    onSearchChange?: (query: string) => void;
+    onSearchChange?: (
+        query: string,
+        details: ComboboxFieldSearchDetails,
+    ) => void;
+    onOpenChange?: (open: boolean) => void;
 };
 
 function optionLabel(option: ComboboxFieldOption): string {
@@ -121,6 +130,7 @@ export function ComboboxField({
     placeholder,
     emptyText = 'Ничего не найдено',
     onSearchChange,
+    onOpenChange,
 }: ComboboxFieldProps) {
     const known = new Map(
         [...(selectedOptions ?? []), ...options].map((option) => [
@@ -138,6 +148,9 @@ export function ComboboxField({
         itemToStringLabel: optionLabel,
         items: options,
         onInputValueChange: onSearchChange,
+        onOpenChange: onOpenChange
+            ? (open: boolean) => onOpenChange(open)
+            : undefined,
     };
 
     return (

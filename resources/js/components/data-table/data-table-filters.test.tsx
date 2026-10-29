@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import type { DataTableFilterDef } from '@/components/data-table';
 import {
     DataTable,
@@ -105,5 +105,48 @@ describe('DataTableFilters', () => {
         );
 
         expect(screen.queryByRole('button', { name: /Нет такой/ })).toBeNull();
+    });
+
+    it('takes the reset over for filters the table does not own', async () => {
+        const onReset = vi.fn();
+        const { user } = renderWithTable(
+            (table) => (
+                <DataTableFilters
+                    filters={FILTERS}
+                    isFiltered
+                    onReset={onReset}
+                    table={table}
+                >
+                    <span>Даты</span>
+                </DataTableFilters>
+            ),
+            options,
+        );
+
+        expect(screen.getByText('Даты')).toBeInTheDocument();
+
+        await user.click(screen.getByRole('button', { name: /Сбросить/ }));
+
+        expect(onReset).toHaveBeenCalledOnce();
+    });
+
+    it('hides the reset when the caller says nothing is filtered', async () => {
+        const { user } = renderWithTable(
+            (table) => (
+                <DataTableFilters
+                    filters={FILTERS}
+                    isFiltered={false}
+                    table={table}
+                />
+            ),
+            options,
+        );
+
+        await user.click(screen.getByRole('button', { name: /Имя/ }));
+        await user.click(
+            await screen.findByRole('menuitemcheckbox', { name: 'Ada' }),
+        );
+
+        expect(screen.queryByRole('button', { name: /Сбросить/ })).toBeNull();
     });
 });

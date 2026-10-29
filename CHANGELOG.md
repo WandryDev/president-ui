@@ -2,6 +2,22 @@
 
 Apps pin a tag in the `@president` URL of their `components.json`. Every release lists what changed per item; anything that breaks an existing call site goes under **Breaking**.
 
+## Unreleased
+
+- `form`: `MediaField` reorders and shows documents. `reorderable` adds move earlier / later buttons; `cover` (on by default for images) can be turned off. Saved items may be objects, read through `getKey`, `getPreviewUrl`, `getName`, `getSize` and `getHref` (defaults: `id`, `url`, `name`, `size`), so `{ id, thumb_url }` or `{ id, name, size, url }` sit next to new `File`s. `variant="file"` lists rows with an icon, the name (a download link for a saved item), the size and a remove button, for PDF and Word documents; `dropzoneSize` picks the tile or the wide block. The file input now takes the field's ref and blur, a file picked twice is added once, and files over `maxFiles` are named in the error list instead of dropped silently. Sizes read «8 МБ» instead of «8.0 МБ».
+- `form`: `Dropzone`, the drop area of `MediaField` on its own (`onFiles`, `accept`, `multiple`, `size`), and `formatFileSize` («840 КБ», «1,5 МБ»).
+- `form`: `MoneyField`, an amount and its currency in one input group (`name`, `currencyName`, `currencies`).
+- `form`: `NumericField`, a number field holding `number | null` with `prefix` / `suffix` addons, `kind` (`integer` | `decimal`), `min`, `max`, `step`, `allowNegative` and optional steppers.
+- `form`: `AsyncComboboxField` and `useAsyncOptions`: options searched through the app's `search(query, { signal })`, debounced, with superseded requests aborted and their answers ignored, `minQueryLength`, `loadWithoutQuery` and `scope`.
+- `form`: `ComboboxField` passes the change details to `onSearchChange` as its second argument and takes `onOpenChange`.
+- `form`: `FormActions`, the footer of a form: submit with its pending state, and a cancel link (`cancelHref`, `align="start"`) or button (`onCancel`, `align="end"`).
+- `data-table`: `FacetedFilter`, the faceted trigger as a controlled component (`title`, `options` with optional `count` and `icon`, `value`, `onValueChange`) that needs no column. `DataTableFacetedFilter` now wraps it; its menu gains a clear item. `DataTableFilterOption` takes `count` and `icon`.
+- `data-table`: `DataTableDateRangeFilter`, a range of days in the faceted style, as `yyyy-MM-dd` strings.
+- `data-table`: `DataTableFilters` takes `isFiltered`, `onReset` and `children`; `DataTableToolbar` takes `onReset`, `isFiltered` and `resetLabel`, for filters kept in the query string. The button itself is exported as `DataTableResetButton`.
+- `data-table`: `DataTableRowActions`, a cell that keeps clicks and keys of its menus and dialogs from reaching a clickable row.
+- `data-table`: `DataTableSettings`, the column visibility and pinning drawer moved from `president-saas` (`components/common/table-settings.tsx`, `TableSettings`), same props plus `className`.
+- `data-table`: `DataTableViewOptions` is exported from the module index.
+
 ## v0.0.12
 
 - `form`: `TranslatableField`, one text in several languages. A tab per locale sits on the label's row; each locale is its own form path (`locales` of `{ name, label }`, e.g. `title_ua`, `title_en`), so the payload stays flat. The fieldset carries the label, every input is named by its locale. `setFocus` on a locale opens its tab. Panels stay mounted: when a submission or a 422 rejects a locale behind another tab, the field opens it and focuses the input, unless focus already went to an earlier invalid field; a rejected tab is marked with a dot. `defaultLocale` picks the tab shown first, input props (`autoComplete`, `placeholder`, …) reach every locale.
