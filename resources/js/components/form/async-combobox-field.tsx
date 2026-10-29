@@ -44,7 +44,8 @@ function mergeOptions(
 
 /** Typing, or clearing what was typed; not the label a picked option writes into the input. */
 function isTypedQuery(details: ComboboxFieldSearchDetails): boolean {
-    if (details.isItemPress) {
+    // `isItemPress` appeared in Base UI 1.8; apps on 1.6 don't have it.
+    if ('isItemPress' in details && details.isItemPress) {
         return false;
     }
 
