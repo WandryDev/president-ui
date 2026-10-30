@@ -185,7 +185,13 @@ export function MoneyField({
     ...props
 }: MoneyFieldProps): ReactElement {
     return (
-        <FormField {...props} disabled={disabled} name={name}>
+        <FormField
+            {...props}
+            disabled={disabled}
+            // The currency select has no message of its own under the group.
+            includeErrorsOf={[currencyName]}
+            name={name}
+        >
             {({ field, ...aria }) => {
                 const shown = groupAmount(field.value ?? '');
 

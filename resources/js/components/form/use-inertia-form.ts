@@ -6,12 +6,13 @@ import { useState } from 'react';
 import type {
     DefaultValues,
     FieldPath,
+    FieldRefs,
     FieldValues,
     Resolver,
     UseFormProps,
     UseFormReturn,
 } from 'react-hook-form';
-import { useForm } from 'react-hook-form';
+import { get, useForm } from 'react-hook-form';
 import type { ZodType, z } from 'zod';
 import { collectFieldPaths, isKnownFieldPath } from './field-paths';
 import type { FormAction } from './types';
@@ -90,31 +91,62 @@ function flattenErrorBags(
 }
 
 /**
- * Laravel returns 422 errors keyed by field. Keys that match a field are shown
- * next to it; anything else — a throttle message, for example — would otherwise
- * vanish, so it lands under `root` where the form renders it as a top level alert.
- * Returns the first field that was rejected, for focusing.
+ * The rendered field a server error belongs to: the key itself, or the
+ * nearest rendered path above it — `documents.0` shows on `documents`.
+ * `null` when no field of the path is rendered right now, e.g. one that only
+ * appears in another mode of the form.
+ */
+function renderedFieldFor(fields: FieldRefs, key: string): string | null {
+    const segments = key.split('.');
+
+    for (let length = segments.length; length > 0; length--) {
+        const path = segments.slice(0, length).join('.');
+
+        // An unmounted field keeps its registration and only drops this flag.
+        if (get(fields, path)?._f?.mount === true) {
+            return path;
+        }
+    }
+
+    return null;
+}
+
+/**
+ * Laravel returns 422 errors keyed by field. A key is shown on the rendered
+ * field it belongs to; anything else — a throttle message, a field that is not
+ * rendered at the moment — would otherwise vanish, so it lands under `root`
+ * where the form renders it as a top level alert. Several messages for one
+ * field are shown together. Returns the first field that was rejected, for
+ * focusing.
  */
 function applyServerErrors<TInput extends FieldValues, TOutput>(
     form: UseFormReturn<TInput, unknown, TOutput>,
     errors: Record<string, string>,
     fieldPaths: Set<string>,
 ): string | null {
+    const messages = new Map<string, string[]>();
     let firstRejectedField: string | null = null;
 
     for (const [key, message] of Object.entries(flattenErrorBags(errors))) {
-        if (isKnownFieldPath(fieldPaths, key)) {
-            form.setError(key as FieldPath<TInput>, {
-                type: 'server',
-                message,
-            });
+        const field = isKnownFieldPath(fieldPaths, key)
+            ? renderedFieldFor(form.control._fields, key)
+            : null;
 
-            firstRejectedField ??= key;
+        if (field === null) {
+            form.setError(`root.${key}`, { type: 'server', message });
 
             continue;
         }
 
-        form.setError(`root.${key}`, { type: 'server', message });
+        messages.set(field, [...(messages.get(field) ?? []), message]);
+        firstRejectedField ??= field;
+    }
+
+    for (const [field, fieldMessages] of messages) {
+        form.setError(field as FieldPath<TInput>, {
+            type: 'server',
+            message: fieldMessages.join('\n'),
+        });
     }
 
     return firstRejectedField;
@@ -185,6 +217,10 @@ export function useInertiaForm<
         // while the request is still in flight, un-disabling the submit button.
         return new Promise<void>((resolve) => {
             router.visit(action.url, {
+                // A rejected submit redirects back to this page; a fresh page
+                // would drop what was typed and the errors set below.
+                preserveScroll: 'errors',
+                preserveState: 'errors',
                 ...visit,
                 method: action.method,
                 data: data as RequestPayload,

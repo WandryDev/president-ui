@@ -2,6 +2,12 @@
 
 Apps pin a tag in the `@president` URL of their `components.json`. Every release lists what changed per item; anything that breaks an existing call site goes under **Breaking**.
 
+## v0.0.16
+
+- `form`: `useInertiaForm` keeps the page when the server rejects a submit (`preserveState` and `preserveScroll` default to `'errors'`; `visit` still overrides them). Before, the redirect back remounted the page: what was typed was reset and the server's errors landed on a form that was gone.
+- `form`: a server error is shown on the rendered field it belongs to, or on the nearest rendered path above it (`documents.0` on `documents`); several messages for one field are shown one per line. An error for a field that is not rendered at the moment goes to the form's top alert instead of vanishing.
+- `form`: `FormField` takes `includeErrorsOf`, other paths whose errors are shown with its own. `MoneyField` passes its `currencyName`, so a rejected currency now has its message under the group.
+
 ## v0.0.15
 
 - `form`: `MoneyField` groups the amount by thousands as it is typed («1 234 567,5»), keeping the caret after the same digit. Only digits and the first decimal mark are kept; Backspace or Delete on a separator takes the digit beside it. The amount is still held as a string, now with the spaces — schemas that strip whitespace need no change. A saved amount is shown grouped.

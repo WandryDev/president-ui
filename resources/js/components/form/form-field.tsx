@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { useContext, useEffect, useId } from 'react';
-import { Controller, useFormContext } from 'react-hook-form';
+import { Controller, get, useFormContext, useFormState } from 'react-hook-form';
 import {
     Field,
     FieldDescription,
@@ -36,6 +36,11 @@ export type FormFieldProps = FormFieldBaseProps & {
     children: (args: FormFieldRenderArgs) => ReactNode;
     /** Places the control before its label, as checkboxes and switches expect. */
     controlFirst?: boolean;
+    /**
+     * Other paths whose errors are shown with this field's, for a control that
+     * edits more than one value, like an amount with its currency.
+     */
+    includeErrorsOf?: string[];
 };
 
 /**
@@ -71,9 +76,21 @@ export function FormField({
     orientation,
     disabled,
     controlFirst = false,
+    includeErrorsOf,
     children,
 }: FormFieldProps) {
     const { control } = useFormContext();
+    const { errors } = useFormState({
+        control,
+        disabled: includeErrorsOf === undefined,
+        name: includeErrorsOf ?? name,
+    });
+    const includedMessages = (includeErrorsOf ?? [])
+        .map((path) => get(errors, path)?.message)
+        .filter(
+            (message): message is string =>
+                typeof message === 'string' && message !== '',
+        );
     const generatedId = useId();
 
     useKnownFieldName(name);
@@ -88,7 +105,12 @@ export function FormField({
             name={name}
             disabled={disabled}
             render={({ field, fieldState }) => {
-                const invalid = Boolean(fieldState.error);
+                const messages = [
+                    fieldState.error?.message,
+                    ...includedMessages,
+                ].filter(Boolean);
+                const invalid =
+                    Boolean(fieldState.error) || includedMessages.length > 0;
                 const describedBy =
                     [
                         description ? descriptionId : null,
@@ -140,8 +162,13 @@ export function FormField({
                         ) : null}
 
                         {invalid ? (
-                            <FieldError id={errorId} match>
-                                {fieldState.error?.message}
+                            // Several messages for one field come joined by line breaks.
+                            <FieldError
+                                className="whitespace-pre-line"
+                                id={errorId}
+                                match
+                            >
+                                {messages.join('\n')}
                             </FieldError>
                         ) : null}
                     </Field>

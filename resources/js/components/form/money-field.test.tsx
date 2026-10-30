@@ -139,6 +139,17 @@ describe('MoneyField', () => {
         );
     });
 
+    it('shows the message of a rejected currency under the group', async () => {
+        const { user } = renderMoneyField('100');
+
+        await submitForm(user);
+        await respondWithErrors({ currency: 'Валюта не поддерживается' });
+
+        expect(
+            await screen.findByText('Валюта не поддерживается'),
+        ).toBeInTheDocument();
+    });
+
     it('marks the currency invalid when the server rejects it', async () => {
         const { user } = renderMoneyField('100');
 

@@ -1,6 +1,7 @@
+import { router } from '@inertiajs/react';
 import { render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { z } from 'zod';
 import {
     didSubmit,
@@ -129,6 +130,70 @@ describe('Form', () => {
         expect(screen.getByLabelText('Email')).not.toHaveAttribute(
             'aria-invalid',
         );
+    });
+
+    it('keeps the page and its input when the server rejects the submit', async () => {
+        const { user } = renderForm({
+            schema,
+            defaultValues,
+            children: fields,
+        });
+
+        await fillValid(user);
+        await submitForm(user);
+
+        expect(vi.mocked(router.visit).mock.calls[0][1]).toMatchObject({
+            preserveScroll: 'errors',
+            preserveState: 'errors',
+        });
+    });
+
+    it('shows an error of a field that is not rendered as an alert', async () => {
+        const { user } = renderForm({
+            schema: schema.extend({ hidden: z.string() }),
+            defaultValues: { ...defaultValues, hidden: '' },
+            children: fields,
+        });
+
+        await fillValid(user);
+        await submitForm(user);
+        await respondWithErrors({ hidden: 'Choose a branch first.' });
+
+        expect(screen.getByRole('alert')).toHaveTextContent(
+            'Choose a branch first.',
+        );
+    });
+
+    it('shows errors of array items on the field of the array', async () => {
+        const { user } = renderForm({
+            schema: schema.extend({ tags: z.string() }),
+            defaultValues: { ...defaultValues, tags: '' },
+            children: (
+                <>
+                    {fields}
+                    <TextField name="tags" label="Tags" />
+                </>
+            ),
+        });
+
+        await fillValid(user);
+        await submitForm(user);
+        await respondWithErrors({
+            'tags.0': 'The first tag is too long.',
+            'tags.1': 'The second tag is taken.',
+        });
+
+        const tags = screen.getByLabelText('Tags');
+
+        expect(tags).toHaveAttribute('aria-invalid', 'true');
+        expect(
+            document.getElementById(
+                tags.getAttribute('aria-describedby') ?? '',
+            ),
+        ).toHaveTextContent(
+            'The first tag is too long. The second tag is taken.',
+        );
+        expect(screen.queryByRole('alert')).not.toBeInTheDocument();
     });
 
     it('stays in the submitting state until the request finishes', async () => {
