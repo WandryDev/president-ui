@@ -47,6 +47,77 @@ describe('MoneyField', () => {
         expect(submittedData()).toEqual({ currency: 'USD', price: '85 000' });
     });
 
+    it('groups the amount by thousands as it is typed', async () => {
+        const { user } = renderMoneyField();
+        const input = screen.getByLabelText('Цена');
+
+        await user.type(input, '1234567,5');
+
+        expect(input).toHaveValue('1 234 567,5');
+        expect(input).toHaveProperty('selectionStart', 11);
+
+        await submitForm(user);
+
+        expect(submittedData()).toEqual({
+            currency: 'UAH',
+            price: '1 234 567,5',
+        });
+    });
+
+    it('shows a saved amount grouped', () => {
+        renderMoneyField('85000.5');
+
+        expect(screen.getByLabelText('Цена')).toHaveValue('85 000.5');
+    });
+
+    it('drops what is not part of an amount', async () => {
+        const { user } = renderMoneyField();
+        const input = screen.getByLabelText('Цена');
+
+        await user.type(input, '12a3,4,5');
+
+        expect(input).toHaveValue('123,45');
+    });
+
+    it('keeps the caret after the digit typed in the middle', async () => {
+        const { user } = renderMoneyField('1000');
+        const input = screen.getByLabelText('Цена');
+
+        await user.type(input, '5', {
+            initialSelectionEnd: 1,
+            initialSelectionStart: 1,
+        });
+
+        expect(input).toHaveValue('15 000');
+        expect(input).toHaveProperty('selectionStart', 2);
+    });
+
+    it('takes the digit before a separator erased with Backspace', async () => {
+        const { user } = renderMoneyField('85000');
+        const input = screen.getByLabelText('Цена');
+
+        await user.type(input, '{Backspace}', {
+            initialSelectionEnd: 3,
+            initialSelectionStart: 3,
+        });
+
+        expect(input).toHaveValue('8 000');
+        expect(input).toHaveProperty('selectionStart', 1);
+    });
+
+    it('takes the digit after a separator erased with Delete', async () => {
+        const { user } = renderMoneyField('85000');
+        const input = screen.getByLabelText('Цена');
+
+        await user.type(input, '{Delete}', {
+            initialSelectionEnd: 2,
+            initialSelectionStart: 2,
+        });
+
+        expect(input).toHaveValue('8 500');
+        expect(input).toHaveProperty('selectionStart', 3);
+    });
+
     it('shows the current currency in the group', () => {
         renderMoneyField('100');
 

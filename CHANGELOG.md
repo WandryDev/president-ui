@@ -2,6 +2,10 @@
 
 Apps pin a tag in the `@president` URL of their `components.json`. Every release lists what changed per item; anything that breaks an existing call site goes under **Breaking**.
 
+## v0.0.15
+
+- `form`: `MoneyField` groups the amount by thousands as it is typed («1 234 567,5»), keeping the caret after the same digit. Only digits and the first decimal mark are kept; Backspace or Delete on a separator takes the digit beside it. The amount is still held as a string, now with the spaces — schemas that strip whitespace need no change. A saved amount is shown grouped.
+
 ## v0.0.14
 
 - `form`: `AsyncComboboxField` builds against `@base-ui/react` 1.6 again: the `isItemPress` flag of Base UI 1.8 is read only when present.
