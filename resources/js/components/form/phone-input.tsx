@@ -1,5 +1,6 @@
 import { Field as FieldPrimitive } from '@base-ui/react/field';
 import { AsYouType } from 'libphonenumber-js/min';
+import parseMobileNumber from 'libphonenumber-js/mobile';
 import { ChevronsUpDownIcon, GlobeIcon, SearchIcon } from 'lucide-react';
 import type {
     ComponentProps,
@@ -240,11 +241,49 @@ function readMask(
 }
 
 /**
+ * A valid mobile number. The masks only know the lengths a country allows
+ * at all, so they take a digit past a full mobile number for the start of a
+ * longer one (`098 711 1111` becomes `0987 111 1112`); the mobile plan does not.
+ */
+function isMobileNumber(digits: string, country?: Country): boolean {
+    return (
+        parseMobileNumber(
+            digits,
+            digits.startsWith('+') ? undefined : country,
+        )?.isValid() ?? false
+    );
+}
+
+/**
+ * Trailing digits typed past a full mobile number: one that no further digit
+ * keeps a mobile number. 0 when the digits hold no such number.
+ */
+function digitsPastMobileNumber(digits: string, country?: Country): number {
+    if (isMobileNumber(digits, country)) {
+        return 0;
+    }
+
+    for (let length = digits.length - 1; length > 0; length--) {
+        const prefix = digits.slice(0, length);
+
+        if (isMobileNumber(prefix, country)) {
+            const canGrow = [...'0123456789'].some((digit) =>
+                isMobileNumber(prefix + digit, country),
+            );
+
+            return canGrow ? 0 : digits.length - length;
+        }
+    }
+
+    return 0;
+}
+
+/**
  * Trailing digits that broke the mask: dropping them gives back a complete
  * number the mask shapes. A number that was never masked, or would come back
  * incomplete, keeps every digit.
  */
-function overflowingDigits(digits: string, country?: Country): number {
+function digitsPastMask(digits: string, country?: Country): number {
     if (readMask(digits, country).isMasked) {
         return 0;
     }
@@ -263,11 +302,24 @@ function overflowingDigits(digits: string, country?: Country): number {
     return 0;
 }
 
+/** Trailing digits past a full mobile number, or past the end of the mask. */
+function overflowingDigits(digits: string, country?: Country): number {
+    return (
+        digitsPastMobileNumber(digits, country) ||
+        digitsPastMask(digits, country)
+    );
+}
+
 /**
- * Cuts the overflowing digits off the end of what was typed or pasted, before
- * the library reads it, and keeps the caret beside the same character.
+ * Cuts the digits typed past a full number off the end of what was typed
+ * or pasted, and keeps the caret beside the same character. Call it from the
+ * input's change handler before a `react-phone-number-input` input reads the
+ * value; `PhoneInput` does so itself. A number typed with `+` is read against
+ * its own calling code, whatever `country` is. With `smartCaret={false}`, skip
+ * the library's handler when the input is left as it was rendered: it reads an
+ * unchanged number as an erased separator and drops a digit.
  */
-function dropOverflowingDigits(
+export function dropOverflowingPhoneDigits(
     input: HTMLInputElement,
     country?: Country,
 ): void {
@@ -310,7 +362,7 @@ function PhoneNumberInput({
         <InputGroupInput
             {...props}
             onChange={(event) => {
-                dropOverflowingDigits(event.target, maskCountry);
+                dropOverflowingPhoneDigits(event.target, maskCountry);
                 onChange?.(event);
             }}
         />

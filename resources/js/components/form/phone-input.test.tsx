@@ -4,7 +4,7 @@ import { useState } from 'react';
 import type { Country } from 'react-phone-number-input';
 import { describe, expect, it, vi } from 'vitest';
 import { InputGroupAddon } from '@/components/ui/input-group';
-import { PhoneInput } from './phone-input';
+import { dropOverflowingPhoneDigits, PhoneInput } from './phone-input';
 
 function ControlledPhone({
     initial = '',
@@ -54,6 +54,19 @@ describe('PhoneInput', () => {
 
         expect(onChange).toHaveBeenLastCalledWith('+380671234567');
         expect(screen.getByLabelText('Телефон')).toHaveValue('067 123 4567');
+    });
+
+    it('stops at a full mobile number the mask would stretch', async () => {
+        const user = userEvent.setup();
+        const onChange = vi.fn();
+
+        render(<ControlledPhone onChange={onChange} />);
+
+        // The mask would take a tenth digit as «0987 111 1112».
+        await user.type(screen.getByLabelText('Телефон'), '09871111112');
+
+        expect(onChange).toHaveBeenLastCalledWith('+380987111111');
+        expect(screen.getByLabelText('Телефон')).toHaveValue('098 711 1111');
     });
 
     it('cuts a pasted number that is too long down to the mask', async () => {
@@ -119,5 +132,42 @@ describe('PhoneInput', () => {
         render(<ControlledPhone initial="ada@example.com" />);
 
         expect(screen.getByLabelText('Телефон')).toHaveValue('');
+    });
+});
+
+describe('dropOverflowingPhoneDigits', () => {
+    function typed(value: string, caret = value.length): HTMLInputElement {
+        const input = document.createElement('input');
+        input.value = value;
+        input.setSelectionRange(caret, caret);
+
+        return input;
+    }
+
+    it('cuts the digits past the mask off the end, keeping the caret', () => {
+        const input = typed('098 711 11112');
+
+        dropOverflowingPhoneDigits(input, 'UA');
+
+        expect(input.value).toBe('098 711 1111');
+        expect(input.selectionStart).toBe(12);
+    });
+
+    it('keeps the caret where a digit was typed inside a full number', () => {
+        // «5» typed after «098 ».
+        const input = typed('098 5711 1111', 5);
+
+        dropOverflowingPhoneDigits(input, 'UA');
+
+        expect(input.value).toBe('098 5711 111');
+        expect(input.selectionStart).toBe(5);
+    });
+
+    it('leaves a number that still fits alone', () => {
+        const input = typed('098 711 11');
+
+        dropOverflowingPhoneDigits(input, 'UA');
+
+        expect(input.value).toBe('098 711 11');
     });
 });

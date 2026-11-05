@@ -2,6 +2,11 @@
 
 Apps pin a tag in the `@president` URL of their `components.json`. Every release lists what changed per item; anything that breaks an existing call site goes under **Breaking**.
 
+## v0.0.18
+
+- `form`: `PhoneInput` also stops at a full mobile number the mask would stretch: a digit after `098 711 1111` no longer turns it into `0987 111 1112`. Mobile numbers are checked against the mobile plan of `libphonenumber-js`; other numbers still stop at the end of the mask.
+- `form`: `dropOverflowingPhoneDigits(input, country)`, exported from `phone-input`, does the same for any `react-phone-number-input` input: call it in the input's change handler before the library reads the value. With `smartCaret={false}`, skip the library's handler when the input is left as it was rendered.
+
 ## v0.0.17
 
 - `form`: `PhoneInput` (and so `PhoneField`) stops a number at the end of its country's mask. A digit typed past it, or the tail of a pasted number that is too long, is dropped from the end; a digit typed inside a full number pushes the last one out. Before, the extra digits were kept and the mask fell back to bare digits. A number no mask shapes is capped at the longest length of its country. `libphonenumber-js` is now a dependency of `form`; it is the package `react-phone-number-input` already installs.
