@@ -1043,6 +1043,7 @@
                 "@inertiajs/core@^3.0.0",
                 "@inertiajs/react@^3.0.0",
                 "date-fns@^4.4.0",
+                "libphonenumber-js@^1.13.15",
                 "lucide-react@^0.475.0",
                 "react-hook-form@^7.83.0",
                 "react-phone-number-input@^3.4.18",

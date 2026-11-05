@@ -2,6 +2,10 @@
 
 Apps pin a tag in the `@president` URL of their `components.json`. Every release lists what changed per item; anything that breaks an existing call site goes under **Breaking**.
 
+## v0.0.17
+
+- `form`: `PhoneInput` (and so `PhoneField`) stops a number at the end of its country's mask. A digit typed past it, or the tail of a pasted number that is too long, is dropped from the end; a digit typed inside a full number pushes the last one out. Before, the extra digits were kept and the mask fell back to bare digits. A number no mask shapes is capped at the longest length of its country. `libphonenumber-js` is now a dependency of `form`; it is the package `react-phone-number-input` already installs.
+
 ## v0.0.16
 
 - `form`: `useInertiaForm` keeps the page when the server rejects a submit (`preserveState` and `preserveScroll` default to `'errors'`; `visit` still overrides them). Before, the redirect back remounted the page: what was typed was reset and the server's errors landed on a form that was gone.

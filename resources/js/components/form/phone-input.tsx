@@ -1,4 +1,5 @@
 import { Field as FieldPrimitive } from '@base-ui/react/field';
+import { AsYouType } from 'libphonenumber-js/min';
 import { ChevronsUpDownIcon, GlobeIcon, SearchIcon } from 'lucide-react';
 import type {
     ComponentProps,
@@ -8,8 +9,9 @@ import type {
     Ref,
     SVGProps,
 } from 'react';
+import { useState } from 'react';
 import type { Country, Labels } from 'react-phone-number-input';
-import PhoneNumberInput, {
+import PhoneNumberInputBase, {
     getCountryCallingCode,
 } from 'react-phone-number-input';
 import embeddedFlags from 'react-phone-number-input/flags';
@@ -23,6 +25,7 @@ import {
     ComboboxPopup,
     ComboboxTrigger,
 } from '@/components/ui/combobox';
+import type { InputProps } from '@/components/ui/input';
 import {
     InputGroup,
     InputGroupAddon,
@@ -211,6 +214,109 @@ function PhoneCountrySelect({
     );
 }
 
+/** What is typed so far: the digits, with the `+` of an international number. */
+function typedDigits(text: string): string {
+    const digits = text.replace(/\D/g, '');
+
+    return text.trimStart().startsWith('+') ? `+${digits}` : digits;
+}
+
+/**
+ * How the country's mask shapes the digits. A number the mask cannot take is
+ * left bare, past the calling code of an international one.
+ */
+function readMask(
+    digits: string,
+    country?: Country,
+): { isMasked: boolean; isComplete: boolean } {
+    const isInternational = digits.startsWith('+');
+    const formatter = new AsYouType(isInternational ? undefined : country);
+    const separators = formatter.input(digits).replace(/[\d+]/g, '').length;
+
+    return {
+        isComplete: formatter.isPossible(),
+        isMasked: separators > (isInternational ? 1 : 0),
+    };
+}
+
+/**
+ * Trailing digits that broke the mask: dropping them gives back a complete
+ * number the mask shapes. A number that was never masked, or would come back
+ * incomplete, keeps every digit.
+ */
+function overflowingDigits(digits: string, country?: Country): number {
+    if (readMask(digits, country).isMasked) {
+        return 0;
+    }
+
+    for (let length = digits.length - 1; length > 0; length--) {
+        const { isMasked, isComplete } = readMask(
+            digits.slice(0, length),
+            country,
+        );
+
+        if (isMasked) {
+            return isComplete ? digits.length - length : 0;
+        }
+    }
+
+    return 0;
+}
+
+/**
+ * Cuts the overflowing digits off the end of what was typed or pasted, before
+ * the library reads it, and keeps the caret beside the same character.
+ */
+function dropOverflowingDigits(
+    input: HTMLInputElement,
+    country?: Country,
+): void {
+    let overflow = overflowingDigits(typedDigits(input.value), country);
+
+    if (overflow === 0) {
+        return;
+    }
+
+    const caret = input.selectionStart ?? input.value.length;
+    const characters = [...input.value];
+    let newCaret = caret;
+
+    for (
+        let index = characters.length - 1;
+        index >= 0 && overflow > 0;
+        index--
+    ) {
+        if (/\d/.test(characters[index])) {
+            characters.splice(index, 1);
+            overflow--;
+
+            if (index < caret) {
+                newCaret--;
+            }
+        }
+    }
+
+    input.value = characters.join('');
+    input.setSelectionRange(newCaret, newCaret);
+}
+
+/** The number input; `maskCountry` is the country whose mask the number is typed against. */
+function PhoneNumberInput({
+    maskCountry,
+    onChange,
+    ...props
+}: InputProps & { maskCountry?: Country }) {
+    return (
+        <InputGroupInput
+            {...props}
+            onChange={(event) => {
+                dropOverflowingDigits(event.target, maskCountry);
+                onChange?.(event);
+            }}
+        />
+    );
+}
+
 function PhoneInputGroup({
     children,
     addons,
@@ -227,7 +333,9 @@ function PhoneInputGroup({
 /**
  * A phone number typed against the mask of its country, with the country
  * picked from a searchable list of flags. A number typed with `+` picks the
- * country itself. Outside a form use it as is; in a form use `PhoneField`, or
+ * country itself. Digits typed or pasted past the end of the mask are dropped
+ * from the end of the number, so the mask never falls back to bare digits.
+ * Outside a form use it as is; in a form use `PhoneField`, or
  * this inside a `FormField` that needs more than a label around the control.
  */
 export function PhoneInput({
@@ -241,8 +349,10 @@ export function PhoneInput({
     ref,
     ...inputProps
 }: PhoneInputProps) {
+    const [country, setCountry] = useState(defaultCountry);
+
     return (
-        <PhoneNumberInput
+        <PhoneNumberInputBase
             {...inputProps}
             className={className}
             containerComponent={PhoneInputGroup}
@@ -251,12 +361,17 @@ export function PhoneInput({
             countrySelectComponent={PhoneCountrySelect}
             defaultCountry={defaultCountry}
             initialValueFormat="national"
-            inputComponent={InputGroupInput}
+            inputComponent={PhoneNumberInput}
             // The component's own `ref` is typed as the class instance; this is
             // the prop it forwards to the `<input>`.
             inputRef={ref}
             labels={labels}
+            // A cap for a number no mask shapes; a masked one stops at the
+            // end of its mask before this applies.
+            limitMaxLength
+            numberInputProps={{ maskCountry: country }}
             onChange={(next?: string) => onChange(next ?? '')}
+            onCountryChange={setCountry}
             // Anything else, such as an email left over from another contact
             // kind, is not a number to show; the input starts empty instead.
             value={value.startsWith('+') ? value : undefined}
